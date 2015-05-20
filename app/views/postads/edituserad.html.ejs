@@ -1,0 +1,418 @@
+<% include  ../layout.ejs %>
+  <% include ../users/profile_panel.ejs%>
+
+            </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="breadcrumb">
+          <li>You are here:</li>
+          <li>Create AD</li>
+        </ul>
+
+        <h1 class="section-title">Create AD</h1>
+
+        <form class="content-form" action="/edituserad" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="hidden" name="adid" value="<%=ad.id%>"/>
+            <label class="caption">Select a Category(<span class="ic-mandatory">*</span>):</label>
+            <select name="category" id="category" required>
+              <option value="">--- select ---</option>
+              <%categories.forEach(function(cat, index){%>
+                <option value="<%=cat.categoryname%>" <% if(ad.category == cat.categoryname){%>selected<%}%>><%=cat.categoryname%></option>
+              <%})%>
+            </select>
+          </div> <!--form-group-->
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">AD Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">AD Title (<span class="ic-mandatory">*</span>):</label>
+            <input class="full" type="text" name="adtitle" value="<%=ad.adtitle%>" id="adtitle" required>
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Give your AD a descriptive title to improve its visibility.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Description :</label>
+            <textarea class="full" name="description" id="description"><%=ad.description%></textarea>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Add Pictures(<span class="ic-mandatory">*</span>):</label>
+            <div class="clearfix pic-container">
+              
+              <div class="ad-media top-row"> <!--pic01-->
+                <div class="media-box media-lrg">                
+                <% if(images.length > 0){%>
+                  <input type="file" name="pic_1" id="pic_1" tgt="#img_1" style="display:none">
+                  <input type="hidden" name="pic_1_src" id="pic_1_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[0].photo%>" alt="" id="img_1" tgt="#pic_1">
+                <% }else{ %>
+                  <input type="file" name="pic_1" id="pic_1" tgt="#img_1" style="display:none">
+                  <input type="hidden" name="pic_1_src" id="pic_1_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_1" tgt="#pic_1">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic02-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>1){%>
+                  <input type="file" name="pic_2" id="pic_2" tgt="#img_2" style="display:none">
+                  <input type="hidden" name="pic_2_src" id="pic_2_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[1].photo%>" alt="" id="img_2" tgt="#pic_2">
+                <% }else{ %>
+                  <input type="file" name="pic_2" id="pic_2" tgt="#img_2" style="display:none">
+                  <input type="hidden" name="pic_2_src" id="pic_2_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_2" tgt="#pic_2">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              
+              <div class="ad-media top-row"> <!--pic03-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>2){%>
+                  <input type="file" name="pic_3" id="pic_3" tgt="#img_3" style="display:none">
+                  <input type="hidden" name="pic_3_src" id="pic_3_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[2].photo%>" alt="" id="img_3" tgt="#pic_3">
+                <% }else{ %>
+                  <input type="file" name="pic_3" id="pic_3" tgt="#img_3" style="display:none">
+                  <input type="hidden" name="pic_3_src" id="pic_3_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_3" tgt="#pic_3">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic04-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>3){%>
+                  <input type="file" name="pic_4" id="pic_4" tgt="#img_4" style="display:none">
+                  <input type="hidden" name="pic_4_src" id="pic_4_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[3].photo%>" alt="" id="img_4" tgt="#pic_4">
+                <% }else{ %>
+                  <input type="file" name="pic_4" id="pic_4" tgt="#img_4" style="display:none">
+                  <input type="hidden" name="pic_4_src" id="pic_4_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_4" tgt="#pic_4">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic05-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>4){%>
+                  <input type="file" name="pic_5" id="pic_5" tgt="#img_5" style="display:none">
+                  <input type="hidden" name="pic_5_src" id="pic_5_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[4].photo%>" alt="" id="img_5" tgt="#pic_5">
+                <% }else{ %>
+                  <input type="file" name="pic_5" id="pic_5" tgt="#img_5" style="display:none">
+                  <input type="hidden" name="pic_5_src" id="pic_5_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_5" tgt="#pic_5">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic06-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>5){%>
+                  <input type="file" name="pic_6" id="pic_6" tgt="#img_6" style="display:none">
+                  <input type="hidden" name="pic_6_src" id="pic_6_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[5].photo%>" alt="" id="img_6" tgt="#pic_6">
+                <% }else{ %>
+                  <input type="file" name="pic_6" id="pic_6" tgt="#img_6" style="display:none">
+                  <input type="hidden" name="pic_6_src" id="pic_6_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_6" tgt="#pic_6">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic07-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>6){%>
+                  <input type="file" name="pic_7" id="pic_7" tgt="#img_7" style="display:none">
+                  <input type="hidden" name="pic_7_src" id="pic_7_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[6].photo%>" alt="" id="img_7" tgt="#pic_7">
+                <% }else{ %>
+                  <input type="file" name="pic_7" id="pic_7" tgt="#img_7" style="display:none">
+                  <input type="hidden" name="pic_7_src" id="pic_7_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_7" tgt="#pic_7">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic08-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>7){%>
+                  <input type="file" name="pic_8" id="pic_8" tgt="#img_8" style="display:none">
+                  <input type="hidden" name="pic_8_src" id="pic_8_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[7].photo%>" alt="" id="img_8" tgt="#pic_8">
+                <% }else{ %>
+                  <input type="file" name="pic_8" id="pic_8" tgt="#img_8" style="display:none">
+                  <input type="hidden" name="pic_8_src" id="pic_8_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_8" tgt="#pic_8">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic09-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>8){%>
+                  <input type="file" name="pic_9" id="pic_9" tgt="#img_9" style="display:none">
+                  <input type="hidden" name="pic_9_src" id="pic_9_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[8].photo%>" alt="" id="img_9" tgt="#pic_9">
+                <% }else{ %>
+                  <input type="file" name="pic_9" id="pic_9" tgt="#img_9" style="display:none">
+                  <input type="hidden" name="pic_9_src" id="pic_9_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_9" tgt="#pic_9">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+              <div class="ad-media top-row"> <!--pic10-->
+                <div class="media-box media-lrg">                
+                <% if(images.length>9){%>
+                  <input type="file" name="pic_10" id="pic_10" tgt="#img_10" style="display:none">
+                  <input type="hidden" name="pic_10_src" id="pic_10_src"/>
+                  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[9].photo%>" alt="" id="img_10" tgt="#pic_10">
+                <% }else{ %>
+                  <input type="file" name="pic_10" id="pic_10" tgt="#img_10" style="display:none">
+                  <input type="hidden" name="pic_10_src" id="pic_10_src"/>
+                  <img src="images/no-image.jpg" alt="" id="img_10" tgt="#pic_10">
+                <%}%>
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+
+            </div> <!--pic-container-->
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>ADs with pictures are more successful. You may load upto 10 pictures, each upto a size of 4MB.</p>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Advertised by:</label>
+            <select name="advertised" id="advertised">
+              <option>--- select ---</option>
+              <option selected="selected"><%=ad.advertised%></option>
+              <option>Private</option>
+            </select>
+          </div> <!--form-group-->
+
+          <div class="form-group toggle">
+            <label class="caption">Select a job Type:</label>
+            <select name="jobtype" id="job-type">
+              <option>--- select ---</option>
+              <option selected="selected"><%=ad.jobtype%></option>
+              <option>Casual</option>
+            </select>
+          </div> <!--form-group-->
+          
+          <div class="form-group">
+            <label class="caption">Strat Date (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="startdate" value="<%=ad.startdate%>" id="startdate" required>
+          </div> <!--form-group--> 
+          <div class="form-group">
+            <label class="caption">End Date (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" value="<%=ad.enddate%>" name="enddate" id="enddate" required>
+          </div> <!--form-group--> 
+          <div class="form-group">
+            <label class="caption">KeyWords :</label>
+            <input type="text" value="<%=ad.keywords%>" name="keywords" id="keywords">
+          </div> <!--form-group--> 
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">Contact Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">Email Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="email" name="email" value="<%=ad.email%>" id="email" required>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Contact Name :</label>
+            <input type="text" name="contactname" value="<%=ad.contactname%>" id="contactname">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Phone Number :</label>
+            <input type="number" value="<%=ad.phone%>" name="phone" id="phone">
+          </div> <!--form-group-->          
+          <div class="form-group">
+            <label class="caption">Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" value="<%=ad.address%>" name="address" id="address" required>            
+            <div class="btn-location">
+              <a href="#"><i class="fa fa-crosshairs"></i></a>
+              <span class="caption">(use current location)</span>
+            </div> <!--btn-location--> 
+            <input type="hidden" name="latitude" id="latitude" value="<%=ad.latitude%>">
+            <input type="hidden" name="longitude" id="longitude" value="<%=ad.longitude%>">
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Help users to locate your AD by entering your full address or suburb.</p>
+       
+          </div> <!--form-group-->          
+          <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<%if(mapkey){%>key=<%=mapkey%><%}%>&sensor=false"></script>
+
+          <script type="text/javascript">
+            $("#category").chosen();
+            var marker = null;
+            var map;
+            var i=1;
+            $(function() {
+                $( "#startdate" ).datepicker({
+                        showOn: "both",
+                        buttonImage: "calendar/calendar.gif",
+                        buttonImageOnly: true,
+                        dateFormat: "yy/mm/dd"
+                });
+                $( "#enddate" ).datepicker({
+                        showOn: "both",
+                        buttonImage: "calendar/calendar.gif",
+                        buttonImageOnly: true,
+                        dateFormat: "yy/mm/dd"
+                });
+            });
+            function readURL(input, target) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $(target).attr('src', e.target.result);                        
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }                  
+            
+            jQuery(document).ready(function(){
+              $(".pic-container img").click(function(){
+                $($(this).attr('tgt')).trigger('click');
+              });
+              $(".pic-container input[type='file']").change(function(){
+                readURL(this,$(this).attr('tgt'));
+                $("#"+$(this).attr('id')+"_src").val("newFile");
+              });
+              initialize();
+            });
+
+            function initialize() {        
+              lat = -37.821242;
+              lng = 144.983191; 
+              if($("#latitude").val() != "")
+              {
+                lat = $("#latitude").val();
+              }
+              
+              if($("#longitude").val() != "")
+              {
+                lng = $("#longitude").val();
+              }
+           
+              var mapcanvas = document.createElement('div');
+              mapcanvas.id = 'mapcanvas';
+              mapcanvas.style.height = "200px";
+              mapcanvas.style.width = '100%';
+              mapcanvas.style.position = 'fixed';
+              document.querySelector('#map').appendChild(mapcanvas);        
+              var latlng = new google.maps.LatLng(lat, lng);
+              var myOptions = {
+                  zoom: 13,
+                  center: latlng,
+                  mapTypeControl: false,
+                  navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+              map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+              geocoder = new google.maps.Geocoder();
+              marker = new google.maps.Marker({
+                  position: latlng,
+                  map: map,
+                  draggable: true,
+                  icon: 'images/marker_green.png',
+                  title: "You are here!"
+              });
+              google.maps.event.addListener(marker, "dragend", function (event) {
+                  var point = marker.getPosition();
+                  map.panTo(point);     
+                  codeLatLng(marker.getPosition().lat(), marker.getPosition().lng());
+              });               
+          };   
+    
+          function codeLatLng(lat,lng) {
+              var latlng = new google.maps.LatLng(lat, lng);
+              setTimeout(function () {
+                  geocoder.geocode({ 'latLng': latlng }, function (results, status) {            
+                      if (status == google.maps.GeocoderStatus.OK) {
+                          $("#address").val(results[0].formatted_address);
+                          $("#latitude").val(lat);
+                          $("#longitude").val(lng);
+                      } else {
+                          alert("Geocoder failed due to: " + status);
+                      }
+                  });
+              }, 1500);
+          } 
+          $("#address").blur(function(){
+              //var address=$("#city").val()+"+"+$("#state").val()+"+"+$("#zipcode").val();//address which you want Longitude and Latitude
+                jQuery.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://maps.googleapis.com/maps/api/geocode/json",
+                data: {'address': $("#address").val(),'sensor':false},
+                    success: function(data){
+                      var newPosition = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
+                      jQuery("#latitude").val(data.results[0].geometry.location.lat);
+                      jQuery("#longitude").val(data.results[0].geometry.location.lng);
+                      map.setCenter(newPosition);
+                      if(marker==null){
+                      marker = new google.maps.Marker({
+                          position: newPosition,
+                          title: data.results[0].formatted_address,
+                        draggable:true
+                      });
+                        marker.setMap(map);
+                        google.maps.event.addListener(marker, 'dragend', function() { 
+              url = "https://maps.googleapis.com/maps/api/geocode/json";
+              jQuery.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    data: {'latlng':marker.position.lat()+","+marker.position.lng(), "sensor":true},
+                    success: function(data){
+                                var addComps = data.results[0].address_components;
+                                jQuery("#latitude").val(data.results[0].geometry.location.lat);
+                                jQuery("#longitude").val(data.results[0].geometry.location.lng);
+                            jQuery("#address").val(data.results[0].formatted_address);                           
+                                marker.setTitle(data.results[0].formatted_address);
+                              },
+                              error: function(err){          
+                                console.log(err)
+                              }
+                          });
+                        }); 
+                      }else{
+                        marker.setPosition(newPosition);
+                        marker.setTitle(data.results[0].formatted_address);                        
+                      }
+                    },
+                    error: function(err){          
+                      console.log(err)
+                    }
+                });
+            });
+          </script>
+
+          <div class="locate-map" id="map">
+            
+          </div> <!--map-->
+          <ul class="btn-group in-row">
+            <li><a href="#" class="btn btn-primary btn-main sml">Cancel</a></li>
+            <!--<li><button type="submit"  id="preview_button" class="btn btn-primary btn-main sml">Preview</button></li>-->
+            <li><button type="submit"  id="submit_button" class="btn btn-primary btn-main sml">Save</button></li>
+          </ul>
+        </form>
+      </div> <!--col-->
+    </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->

@@ -1,0 +1,49 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">	    	
+	    	<h1 class="section-title">Manage <%=type%></h1>
+	    	<div class="tab-content">
+		    	<div class="form-group">
+		    		<form action="<%=formAction%>" method="post">
+				        <label class="caption">Add New Super Category : </label>
+				        <input type="text" name="name" id="newcategory" required>
+				        <button type="submit" class="btn btn-primary btn-main sml">Add</button>
+				        <% if(errmsg != "") {%>
+				        <%= errmsg %>
+				        <% }%>
+			        </form>
+		        </div> <!--form-group--> 
+		        <form action="relateCategories" method="post">
+	    		<table class="table table-striped">	    			
+				    <tr><th>S.No.</th><th><%=type%></th><th>Select/Unselect</th></tr>
+				<% categories.forEach(function(cat, index){ %>
+					<tr>
+						<td><%=index+1%></td>
+						<td><%=cat.categoryname%></td>
+						<td><input type="checkbox" id="category_<%=index%>" name="category" class="category" value="<%=cat.id%>"></td>
+					</tr>
+				<% });%>
+				</table>			
+				
+				<div class="form-group">	    		
+			        <label class="caption">Select Sper Category <%=type%> : </label>
+			        <select name="SuperCategory" required>
+			        	<option value="">-- Select --</opton>
+		        	<% supercategories.forEach(function(item, index){%>
+		        		<option value="<%=item.id%>"><%=item.name%></opton>
+		        	<%});%>
+			        </select>
+			        <button type="submit" class="btn btn-primary btn-main sml">Add</button>
+			        <% if(errmsg != "") {%>
+			        <%= errmsg %>
+			        <% }%>		        
+	        	</div> <!--form-group--> 	
+	        </form>
+	    	</div> <!--tab-content-->	    	
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+

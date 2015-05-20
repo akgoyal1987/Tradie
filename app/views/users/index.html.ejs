@@ -1,0 +1,211 @@
+<% include  ../layout.ejs %>
+<% include profile_panel.ejs%>
+
+
+          </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+	    		<li>Profile</li>
+	    	</ul>
+
+	    	<h1 class="section-title">ADs</h1>
+	    	<%
+	    		var expCount = 0;	
+				var curCount = 0;
+				var currentAd = [];
+				var expireAd = [];
+				var pendingAd = [];
+				for(var x = 0; x < data.ads.length; x++){
+					var sdate = new Date(data.ads[x].ad.startdate);		
+					var edate = new Date(data.ads[x].ad.enddate);
+					var cdate = new Date();	
+				
+					if(cdate.getTime() > edate.getTime())	
+					{
+						expCount++;
+						expireAd.push(data.ads[x]);
+					}
+					if(cdate.getTime() <= edate.getTime())	
+					{
+						curCount++;
+						currentAd.push(data.ads[x]);
+					}
+				}
+	    	%>
+	    	<ul class="nav nav-tabs">
+	    		<li class="active"><a href="#current-ads" data-toggle="tab">Current Ads (<span><%= curCount %></span>)</a></li>
+	    		<li><a href="#expired-ads" data-toggle="tab">Expired Ads (<span><%= expCount %></span>)</a></li>
+	    	</ul>
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+	 
+	    			<% if(currentAd.length == 0){ %>	    			
+	    			<p>You do not have any current ads at this moment.</p>
+	    			<% }else{
+					for(var i = 0; i < currentAd.length; i++){					
+					var photopath = "/images/no-image.jpg"; 
+					if(currentAd[i].ad.photo != null)
+					{
+						photopath = "/uploads/photos/" + currentAd[i].id + "/" + currentAd[i].ad.adid + "/" + currentAd[i].ad.photo;
+					}
+					%>
+					<%if(currentAd[i].ad.status == 1){%>
+	    			<div class="row ad-block">
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="<%= photopath %>" alt="sdate">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">	    	      	
+	    					<p class="captionheading">Title:</p>
+	    					<p class="captiondescription"><%= currentAd[i].ad.adtitle %></p>
+	    					<p class="captionheading">Description:</p>
+	    					<p class="captiondescription"><%= (currentAd[i].ad.description == undefined ? "N/A" : currentAd[i].ad.description) %></p>
+
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<% if(data.user.id == user.id) {%>
+	    						<% if(data.user.usertype == "user") {%>
+	    						<li><a href="/edituserad?id=<%= currentAd[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="/viewuserad?id=<%= currentAd[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a></li>
+	    						<% }else if(data.user.usertype == "tradesman") {%>
+	    						<li><a href="/editbusinessad?id=<%= currentAd[i].ad.adid %>"  class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="/viewbusinessad?id=<%= currentAd[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a></li>
+	    						<% }%>
+	    						<li>
+	    						<% if(currentAd[i].ad.status == 0) {%>
+	    						<a id="hl_publish_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="publishAd(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a>
+	    						<a id="hl_unpublish_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="unpublishAd(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-eye-slash"></i> Unpublish</a>
+	    						<% }else if(currentAd[i].ad.status == 1) {%>
+	    						<a id="hl_publish_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="publishAd(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-eye"></i> Publish</a>
+	    						<a id="hl_unpublish_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="unpublishAd(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a>
+	    						<% } %> 
+	    						</li>	    												
+	    						<li><a href="/deletead?id=<%= currentAd[i].ad.adid %>" onclick="return confirm('Are you sure? You want to delete this Ad.');" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    						<% }else{%>
+	    						<% if(data.user.usertype == "user") {%>
+	    						<li><a href="/viewuserad?id=<%= currentAd[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a></li>
+	    						<% }else if(data.user.usertype == "tradesman") {%>
+	    						<li><a href="/viewbusinessad?id=<%= currentAd[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a></li>
+	    						<% } %> 
+	    						<li>
+	    						<% if(currentAd[i].ad.isWatched == 0) {%>
+	    						<a id="hl_watch_<%= currentAd[i].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a>
+	    						<a id="hl_unwatch_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> UnWatch</a>
+    							<% }else { %> 
+    							<a id="hl_watch_<%= currentAd[i].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Watchlist</a>
+	    						<a id="hl_unwatch_<%= currentAd[i].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= currentAd[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> UnWatch</a>
+    							<% }%> 
+    							</li>	
+	    						<li>
+	    						<% if(currentAd[i].ad.isRecommended == "0"){%>
+								<a id="hl_recommended_<%=currentAd[i].ad.adid%>" onclick="markAdRecommended(<%= currentAd[i].ad.adid %>)" href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Recommend </a>
+								<a id="hl_unrecommended_<%=currentAd[i].ad.adid%>" onclick="markAdUnRecommended(<%= currentAd[i].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> UnRecommend</a>
+								<% } else if(currentAd[i].ad.isRecommended == "1"){%>  
+								<a id="hl_recommended_<%=currentAd[i].ad.adid%>" onclick="markAdRecommended(<%= currentAd[i].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Recommend </a>
+								<a id="hl_unrecommended_<%=currentAd[i].ad.adid%>" onclick="markAdUnRecommended(<%= currentAd[i].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> UnRecommend</a>
+								<% }%> 
+								</li> 	    						
+	    						<% }%>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    			<% }}%>
+
+	    		</div> <!--tab-pane-->
+	    		<!-- ### expired ads data ###-->
+	    		<div class="tab-pane" id="expired-ads">
+	    			<% if(expireAd.length == 0){ %>	    			
+		    			<p>You do not have any expired ads at this moment.</p>
+	    			<% }else{
+						for(var j = 0; j < expireAd.length; j++){					
+						photopath = "/images/no-image.jpg"; 
+						if(expireAd[j].ad.photo != null)
+						{
+							photopath = "/uploads/photos/" + expireAd[j].id + "/" + expireAd[j].ad.adid + "/" + expireAd[j].ad.photo;
+						}
+					%>	    			
+	    			<div class="row ad-block">
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="<%= photopath %>" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data"><%= expireAd[j].ad.adtitle %></p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data"><%= (expireAd[j].ad.description == undefined ? "N/A" : expireAd[j].ad.description) %></p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<% if(data.user.id == user.id) {%>
+	    						<% if(data.user.usertype == "user") {%>
+	    						<li><a href="/edituserad?id=<%= expireAd[j].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<% }else if(data.user.usertype == "tradesman") {%>
+	    						<li><a href="/editbusinessad?id=<%= expireAd[j].ad.adid %>"  class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<% }%>
+
+	    						<li>  
+	    						<% if(expireAd[j].ad.status == 0) {%>
+	    						<a id="hl_publish_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="publishAd(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a>
+	    						<a id="hl_unpublish_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="unpublishAd(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-eye-slash"></i> Unpublish</a>
+	    						<% }else if(expireAd[j].ad.status == 1) {%>
+	    						<a id="hl_publish_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="publishAd(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-eye"></i> Publish</a>
+	    						<a id="hl_unpublish_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="unpublishAd(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a>
+	    						<% } %> 
+	    						</li>    						
+	    						<li><a href="/deletead?id=<%= expireAd[j].ad.adid %>" onclick="return confirm('Are you sure? You want to delete this Ad.');" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    						<% }else{%>
+	    						<li>
+	    						<% if(expireAd[j].ad.isWatched == 0) {%>
+	    						<a id="hl_watch_<%= expireAd[j].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a>
+	    						<a id="hl_unwatch_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> UnWatch</a>
+    							<% }else{ %> 
+    							<a id="hl_watch_<%= expireAd[j].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Watchlist</a>
+	    						<a id="hl_unwatch_<%= expireAd[j].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= expireAd[j].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> UnWatch</a>
+    							<% }%> 
+    							</li>
+	    						<li>
+	    						<% if(expireAd[j].ad.isRecommended == "0"){%>
+								<a id="hl_recommended_<%=expireAd[j].ad.adid%>" onclick="markAdRecommended(<%= expireAd[j].ad.adid %>)" href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Recommend </a>
+								<a id="hl_unrecommended_<%=expireAd[j].ad.adid%>" onclick="markAdUnRecommended(<%= expireAd[j].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Unrecommend</a>
+								<% } else if(expireAd[j].ad.isRecommended == "1"){%>  
+								<a id="hl_recommended_<%=expireAd[j].ad.adid%>" onclick="markAdRecommended(<%= expireAd[j].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Recommend </a>
+								<a id="hl_unrecommended_<%=expireAd[j].ad.adid%>" onclick="markAdUnRecommended(<%= expireAd[j].ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Unrecommend</a>
+								<% }%> 
+								</li>
+	    						<% }%>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    			<% }}%>
+	    			
+	    			  <%}%>
+	    		</div> <!--tab-pane-->
+	    	</div> <!--tab-content-->
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+

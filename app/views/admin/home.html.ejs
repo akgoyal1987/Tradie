@@ -1,0 +1,47 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	
+	    	<h1 class="section-title">Users</h1>
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+	    			<p class="toggle">You do not have any current ads at this moment.</p>
+				<%
+					users.forEach(function(u, index){
+				%>
+
+					<div class="row ad-block">
+	    				<img src="<%=u.photourl%>" style="width:50px; height:50px; verticle-align : middle; float:left; border:solid 1px #999;" alt="">
+	    				<div class="col-xs-8">
+	    					<p class="caption">Name:</p>
+	    					<p class="caption-data"><%=u.name%></p>
+
+	    					<p class="caption">Email:</p>
+	    					<p class="caption-data"><%=u.email%></p>
+
+	    					<p class="caption">Join Date:</p>
+	    					<p class="caption-data"><%=u.createddate%></p>
+	    				</div> <!--col-->
+
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+							<li><a href="/admin/viewads/<%=u.id%>" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> View Ads</a></li>    						
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+				<%});%>	    			
+	    		</div> <!--tab-pane-->
+	    	</div> <!--tab-content-->
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+
+<!-- !!! footer !!!-->
+<% include  ../footer.ejs %> 
+<!--footer-wrapper-->
+
+

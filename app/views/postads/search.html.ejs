@@ -1,0 +1,38 @@
+<% include  ../layout.ejs %>
+
+    <!-- Search Panel -->
+    <% include ../search_panel.ejs %>
+    
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Search Results</h1>
+        <div class="clearfix slider">
+          <% ads.forEach(function(ad,i){ %>                        
+            <div class="slider-content">
+              <div class="slider-pic">
+                <% if (ad.imageurl && ad.imageurl!=""){%>
+                  <img src="<%=ad.imageurl%>" alt="">
+                <%} else {%>
+                  <img src="images/img01.jpg" alt="">
+                <%}%>
+              </div> <!--slider-pic-->
+              <ul>
+                <li><%=ad.title%></li>
+                <% if(ad.adtype=="tradesman") { %>
+                <li><a href="<%="viewbusinessad?id="+ad.adid%>"# class="text-link">view details</a></li>
+                <% } else {%>
+                <li><a href="<%="viewuserad?id="+ad.adid%>"# class="text-link">view details</a></li>
+                <% } %>
+              </ul>
+            </div> <!--slider-content-->
+
+          <% });%>
+
+        </div> <!--slider-->
+        </div> <!--col-->
+      </div> <!--row-->
+    </div> <!--container-->
+    
+<% include ../footer.ejs %>

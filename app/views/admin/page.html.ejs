@@ -1,0 +1,72 @@
+<% include  ./layout.ejs %>
+
+            </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="section-title">Add/Edit Page</h1>
+        <% if(data && data.length > 0){ %>
+        <form class="content-form" action="/admin/createpage" method="post">
+          <div class="form-group">
+            <label class="caption">Page Display Name (<span class="ic-mandatory">*</span>):</label>
+            <input class="full" type="text" name="displayname" value="<%= data[0].displayname%>" required>
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Give display name of page which will be shown on link.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Page Content (<span class="ic-mandatory">*</span>):</label>
+            <textarea class="full" name="content" id="content"><%= data[0].content%></textarea>
+            <script language="javascript">
+            CKEDITOR.replace( 'content' );
+          </script>
+          </div> <!--form-group-->
+          <input type="hidden" name="id" id="id" value="<%= data[0].id%>">
+          <ul class="btn-group in-row">
+            <li><a href="/admin/pages" class="btn btn-primary btn-main sml">Cancel</a></li>            
+            <li><button type="submit" id="submit_button" class="btn btn-primary btn-main sml">Submit</button></li>
+          </ul>
+        </form>
+        <% }else{ %>
+          <form class="content-form" action="/admin/createpage" method="post">
+          <div class="form-group">
+            <label class="caption">Page Display Name (<span class="ic-mandatory">*</span>):</label>
+            <input class="full" type="text" name="displayname" required>
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Give display name of page which will be shown on link.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Page Content (<span class="ic-mandatory">*</span>):</label>
+            <textarea class="full" name="content" id="content"></textarea>
+            <script language="javascript">
+              CKEDITOR.replace( 'content' );
+            </script>
+          </div> <!--form-group-->
+          <input type="hidden" name="id" id="id" value="0">
+          <ul class="btn-group in-row">
+            <li><a href="/admin/pages" class="btn btn-primary btn-main sml">Cancel</a></li>            
+            <li><button type="submit" onclick="return onsubmitclick();" id="submit_button" class="btn btn-primary btn-main sml">Submit</button></li>
+          </ul>
+        </form>
+        <% } %>
+      </div> <!--col-->
+    </div> <!--row-->
+    </div> <!--container-->
+    <script type="text/javascript">
+      function onsubmitclick()
+      {
+        var ret = true;
+        $('#content').val(CKEDITOR.instances['content'].getData()); 
+        if($('#content').val() == "")
+        {
+          alert("Please enter page content."); 
+          ret = false;
+        }
+        return ret;
+      }
+    </script>
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->

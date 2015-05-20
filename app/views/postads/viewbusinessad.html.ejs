@@ -1,0 +1,395 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+            <li><a href="findservice">Create AD</a></li>
+            <li>Preview AD</li>
+  	    	</ul>
+        </div> <!--col-->
+
+        <!--### people - left section ###-->
+        <div class="col-xs-8 content-form">
+
+        	<h2 class="ad-title"><%=ad.adtitle%></h2>
+        	<p><%=ad.slogan%></p>
+
+        	<div class="ad-location"><i class="fa fa-map-marker"></i><%=ad.address%></div>
+
+          <div class="block-div">
+            <p class="caption">Category:</p>
+            <p class="caption-data"><%=ad.category%></p>
+          </div> <!--block-div-->
+
+        	<div class="row block-div">
+        		<div class="col-xs-4">
+        			<div class="ad-media">
+						<div class="media-box media-lrg">							
+
+                            <% if(images && images[0]){
+                            %>                                          
+                    <img src="<%="uploads/photos/"+aduser.id+"/"+ad.id+"/"+images[0].photo%>" alt="">
+                                
+                            <%} else {%>
+                                <img src="images/media01.jpg" alt="">
+                            <%}%>
+
+						</div> <!--media-box-->
+					</div> <!--ad-media-->
+        		</div> <!--col-->
+
+        		<div class="col-xs-8">
+        			<p class="caption">Hours of Operation:</p>
+        			<ul class="operation-hours">
+              <% if(ad.mondayam && ad.mondaypm) {%>
+        				<li><Span>Monday:</Span> <%=ad.mondayam%> am to<%=ad.mondayam%> pm</li>
+              <%}if(ad.tuesdayam && ad.tuesdaypm) {%>
+        				<li><Span>Tuesday:</Span> <%=ad.tuesdayam%> am to <%=ad.tuesdaypm%> pm</li>
+              <%}if(ad.wednesdayam && ad.wednesdaypm) {%>
+        				<li><Span>Wednesday:</Span> <%=ad.wednesdayam%> am to <%=ad.wednesdaypm%> pm</li>
+              <%}if(ad.thursdayam && ad.thursdaypm) {%>
+                <li><Span>Thursday:</Span> <%=ad.thursdayam%> am to <%=ad.thursdaypm%> pm</li>
+              <%}if(ad.fridayam && ad.fridaypm) {%>
+                <li><Span>Friday:</Span> <%=ad.fridayam%> am to <%=ad.fridaypm%> pm</li>
+              <%}if(ad.saturdayam && ad.saturdaypm) {%>
+        				<li><Span>Saturday:</Span> <%=ad.saturdayam%> am to <%=ad.saturdaypm%> pm</li>
+              <%}if(ad.sundayam && ad.sundaypm) {%>
+        				<li><Span>Sunday:</Span> <%=ad.sundayam%> am to <%=ad.sundaypm%> pm</li>
+              <%}%>
+        			</ul>
+
+        		</div> <!--col-->
+        	</div> <!--row-->
+
+        	<div class="block-div">
+        		<p class="caption">Accrediation:</p>
+        		<p class="caption-data"><%=ad.accrediation%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">ABN Number:</p>
+        		<p class="caption-data"><%=ad.abn%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">Areas of Experties:</p>
+        		<p class="caption-data"><%=ad.areaofexpertise%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">Description:</p>
+        		<p class="caption-data"><%=ad.description%></p>
+        	</div> <!--block-div-->
+
+            <div class="ad-reply-block">
+                <div class="hr-block">
+                    <hr>
+                  <span class="block-title">Replies</span>
+              </div> <!--hr-block-->
+            <% replies.forEach(function(reply, index){%>
+              <div class="ad-reply">
+                <div class="clearfix user-block">
+                    <div class="user-pic on-white">
+                      <div class="pic-box-sml">
+                        <img alt="" src="<%=reply.user.photourl%>">
+                      </div> <!--pic-box-->
+                    </div> <!--user-pic-->
+                    <div class="user-detail">
+                      <p><%=reply.user.name%></p>
+                      <p class="reply-date"><%=reply.reply.properties.date%></p>
+                    </div> <!--user-detail-->
+                </div> <!--user-block-->
+
+                <p class="reply-message"><%=reply.reply.properties.description%></p>
+              </div> <!--ad-reply-->
+            <%})%>
+
+            <form class="content-form" method = "post" action="adreply/<%=ad.id%>">
+              <label class="caption">Reply to this AD:</label>
+              <textarea name="description" class="full"></textarea>
+
+              <ul class="btn-group in-row">
+                <li><button type="submit" class="btn btn-primary btn-main sml">Post Your Reply</button></li>
+              </ul>
+            </form>  
+            
+          </div>
+
+
+
+            <div class="ad-reply-block">
+                <div class="hr-block">
+                    <hr>
+                    <span class="block-title">Reviews</span>
+
+                </div> <!--hr-block-->
+
+                <p class="toggle">Currently there is no review to show for this AD. Be the first to <a href="write-review.html">write a review</a>.</p>
+              <% reviews.forEach(function(review, index){%>
+                <div class="ad-reply">
+                  <div class="clearfix user-block">
+                      <div class="user-pic on-white">
+                        <div class="pic-box-sml">
+                          <img alt="" src="<%=review.user.photourl%>">
+                        </div> <!--pic-box-->
+                      </div> <!--user-pic-->
+                      <div class="user-detail">
+                        <p><%=review.user.name%></p>
+                        <p class="reply-date"><%=review.user.createddate%></p>
+                      </div> <!--user-detail-->
+                  </div> <!--user-block-->
+
+                  <p class="reply-summary"><%=review.title%></p>
+
+                  <p class="reply-message"><%=review.description%></p>
+
+                  <div class="row rating-block">
+                    <div class="col-xs-6">
+                        <div class="clearfix sub-rating">
+                            <p class="caption">Quality:</p>
+                            <div class="clearfix rating quality">                              
+                              <input <%if(review.quality==1){%> checked="checked" <%}%> class="Quality_<%=review.id%>" type="radio" name="quality_<%=review.id%>" value="1"/>
+                              <input <%if(review.quality==2){%> checked="checked"  checked="checked" <%}%> class="Quality_<%=review.id%>" type="radio" name="quality_<%=review.id%>" value="2"/>
+                              <input <%if(review.quality==3){%> checked="checked" <%}%> class="Quality_<%=review.id%>" type="radio" name="quality_<%=review.id%>" value="3"/>
+                              <input <%if(review.quality==4){%> checked="checked" <%}%> class="Quality_<%=review.id%>" type="radio" name="quality_<%=review.id%>" value="4"/>
+                              <input <%if(review.quality==5){%> checked="checked" <%}%> class="Quality_<%=review.id%>" type="radio" name="quality_<%=review.id%>" value="5"/>
+                            </div>
+                        </div> <!--sub-rating-->
+                        <div class="clearfix sub-rating">
+                            <p class="caption">Reliability:</p>
+                            <div class="clearfix rating reliability">
+                              <input <%if(review.reliability==1){%> checked="checked" <%}%> class="Reliability_<%=review.id%>" type="radio" name="reliability_<%=review.id%>" value="1"/>
+                              <input <%if(review.reliability==2){%> checked="checked" <%}%> class="Reliability_<%=review.id%>" type="radio" name="reliability_<%=review.id%>" value="2"/>
+                              <input <%if(review.reliability==3){%> checked="checked" <%}%> class="Reliability_<%=review.id%>" type="radio" name="reliability_<%=review.id%>" value="3"/>
+                              <input <%if(review.reliability==4){%> checked="checked" <%}%> class="Reliability_<%=review.id%>" type="radio" name="reliability_<%=review.id%>" value="4"/>
+                              <input <%if(review.reliability==5){%> checked="checked" <%}%> class="Reliability_<%=review.id%>" type="radio" name="reliability_<%=review.id%>" value="5"/>
+                            </div>
+                        </div> <!--sub-rating-->
+                        <div class="clearfix sub-rating">
+                            <p class="caption">Friendliness:</p>
+                            <div class="clearfix rating friendliness">
+                              <input <%if(review.friendliness==1){%> checked="checked" <%}%> class="Friendliness_<%=review.id%>" type="radio" name="friendliness_<%=review.id%>" value="1"/>
+                              <input <%if(review.friendliness==2){%> checked="checked" <%}%> class="Friendliness_<%=review.id%>" type="radio" name="friendliness_<%=review.id%>" value="2"/>
+                              <input <%if(review.friendliness==3){%> checked="checked" <%}%> class="Friendliness_<%=review.id%>" type="radio" name="friendliness_<%=review.id%>" value="3"/>
+                              <input <%if(review.friendliness==4){%> checked="checked" <%}%> class="Friendliness_<%=review.id%>" type="radio" name="friendliness_<%=review.id%>" value="4"/>
+                              <input <%if(review.friendliness==5){%> checked="checked" <%}%> class="Friendliness_<%=review.id%>" type="radio" name="friendliness_<%=review.id%>" value="5"/>
+                            </div>
+                        </div> <!--sub-rating-->
+                    </div> <!--col-->
+                    <div class="col-xs-6">
+                        <div class="main-rating">
+                            <p class="caption">Overall Rating:</p>
+                            <div class="clearfix rating overall">                              
+                              <input <%if(review.overall==1){%> checked="checked" <%}%> class="Overall_<%=review.id%>" type="radio" name="overall_<%=review.id%>" value="1"/>
+                              <input <%if(review.overall==2){%>  checked="checked" <%}%> class="Overall_<%=review.id%>" type="radio" name="overall_<%=review.id%>" value="2"/>
+                              <input <%if(review.overall==3){%> checked="checked"<%}%> class="Overall_<%=review.id%>" type="radio" name="overall_<%=review.id%>" value="3"/>
+                              <input <%if(review.overall==4){%> checked="checked"<%}%> class="Overall_<%=review.id%>" type="radio" name="overall_<%=review.id%>" value="4"/>
+                              <input <%if(review.overall==5){%> checked="checked"<%}%> class="Overall_<%=review.id%>" type="radio" name="overall_<%=review.id%>" value="5"/>
+                            </div>
+                        </div> <!--rating-block-->
+                    </div> <!--col-->
+                  </div> <!--row-->
+                </div> <!--ad-reply-->
+
+                <script>
+                  $('.Quality_<%=review.id%>').rating();
+                  $('.Reliability_<%=review.id%>').rating();
+                  $('.Friendliness_<%=review.id%>').rating();
+                  $('.Overall_<%=review.id%>').rating();    
+
+                  $('.Quality_<%=review.id%>').rating('readOnly', true);
+                  $('.Reliability_<%=review.id%>').rating('readOnly', true);
+                  $('.Friendliness_<%=review.id%>').rating('readOnly', true);
+                  $('.Overall_<%=review.id%>').rating('readOnly', true);
+                </script>
+
+              <%})%>
+              </div>
+
+        	<ul class="btn-group in-row" style="display:none">
+	            <li><a href="/createbusinessad" class="btn btn-primary btn-main sml">Edit</a></li>
+	            <li><a href="/previewbusinessad" class="btn btn-primary btn-main sml">Publish</a></li>
+            </ul>
+  		</div> <!--col-->
+
+        <!--### sidebar - right section ###-->
+        <div class="col-xs-4">
+            <div class="clearfix side-block">
+                <h3 class="side-block-title">AD Posted by:</h3>
+
+                <div class="clearfix user-block">
+                    <div class="user-pic on-white">
+                        <div class="pic-box-lg">
+                    <% if(aduser.photourl){ %>
+                      <img src="<%=aduser.photourl%>" alt="">
+                    <%}else{%>
+                              <img src="images/no-pic.png" alt="">
+                    <%}%>
+                        </div> <!--pic-box-->
+                    </div> <!--user-pic-->
+                    <div class="user-detail">
+                        <p><%=aduser.name%></p>
+                        <p class="caption">Member Since <%=aduser.createddate%></p>
+                    </div> <!--user-detail-->
+                </div> <!--user-block-->
+            <%if(visitor.id != aduser.id){%>
+                <div class="center action-btns">
+                  <ul class="btn-group">
+                    <li><a class="btn btn-primary btn-main sml" href="#">Follow</a></li>
+                    <li class="toggle"><a class="btn btn-primary btn-main sml" href="#">Unfollow</a></li>
+                    <li>
+                        <a class="btn btn-primary btn-main sml" data-target=".recommend" data-toggle="modal" href="#">Recommend</a>
+                    </li>
+                    <li><a class="btn btn-primary btn-main sml" href="writereview/<%=ad.id%>">Write a Review</a></li>
+                  </ul>
+                </div>
+            <%}%>
+            </div>
+
+            <div class="ad-location-map" id="map-canvas" style="min-height: 250px;"></div> <!--ad-location-map-->
+
+            <div class="clearfix side-block">
+              <h3 class="side-block-title no-margin-bottom">Matching ADs to This Business</h3>
+
+              <div class="random-data">
+                <p><a href="#" class="text-link">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</a></p>
+                <ul class="key-points">
+                  <li>5 Replies</li>
+                  <li><i class="fa fa-map-marker"></i> Northern Beaches</li>
+                  <li>10 Jan, 2014</li>
+                </ul>
+              </div> <!--random-data-->
+
+          </div> <!--side-block-->
+
+          <div class="clearfix side-block">
+              <h3 class="side-block-title no-margin-bottom">Trademan with Similar Business</h3>
+
+              <div class="random-data">
+                <div class="clearfix user-block">
+                    <div class="user-pic on-gray">
+                      <div class="pic-box-sml">
+                        <img src="images/no-pic.png" alt="">
+                      </div> <!--pic-box-->
+                      <span class="badge-ic trademan"></span>
+                    </div> <!--user-pic-->
+                    <div class="user-detail">
+                      <p>thecagrat24  (@scottbenj)</p>
+                      <ul class="btn-group in-row">
+                        <li><a href="profile.html" class="btn btn-primary btn-main xsml">View Profile</a></li>
+                      </ul>
+                    </div> <!--user-detail-->
+                </div> <!--user-block-->
+
+                <ul class="key-points trademan-data">
+                  <li><span class="count">70</span>Followers</li>
+                  <li><span class="count">25</span>Current Ads</li>
+                  <li>
+                    <div class="clearfix rating">
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+            </div>
+                    Overall Rating
+                  </li>
+                </ul>
+              </div> <!--random-data-->
+
+          </div> <!--side-block-->
+
+        </div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(22.7253, 75.8655);
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 12
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);                      
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>),
+          title: '<%=ad.address%>'
+        });                        
+        marker.setMap(map);
+        map.setCenter(new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>));    
+      }      
+      google.maps.event.addDomListener(window, 'load', initialize);        
+      </script>
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+    <!-- !!! recommend popup !!!-->
+    <div class="modal fade popup-block user-list recommend" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <span class="btn-close-popup" data-dismiss="modal" data-target=".recommend"><i class="fa fa-times-circle"></i></span>
+          <h1>Recommend this Tradie to</h1>
+          <form class="clearfix people-search">
+            <input type="text" name="people-search" placeholder="serach user">
+            <button class="btn btn-primary btn-main sml" type="submit" name="submit"><i class="fa fa-search"></i></button>
+          </form>
+          
+          <div class="clearfix">
+          <% users.forEach(function(u, index){ 
+            if(user.id!=u.id){%>
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="<%=u.photourl%>" alt="">
+                  </div> <!--pic-box-->
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p><%=u.name%></p>
+                  <ul class="btn-group in-row">
+                    <li><a href="javascript:void(0);" userid="<%=u.id%>" class="btn btn-primary btn-main xsml recommend_tradie">Recommend</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+          <%}});%>
+          </div>
+          <ul class="pagination">
+            <li><a href="#" class="active">First</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+            <li><a href="#">Last</a></li>
+          </ul>
+        </div> <!--modal-content-->
+      </div> <!--modal-sm-->
+    </div> <!--modal-->
+
+  </body>
+  <script>
+    $("a.recommend_tradie").click(function(){
+      //alert($(this).attr('userid'));
+      var th = $(this);
+      $.ajax({
+        url : "/recommendadtouser",
+        type : "post",
+        data : "targetuser="+$(this).attr('userid')+"&adid=<%=ad.id%>",
+        success : function(result){
+          if(result=="success")
+            th.parent().parent().parent().parent().remove();;
+        },
+        err : function(err){
+          console.log(err);
+        }
+      });
+    });
+  </script>
+
+</html>

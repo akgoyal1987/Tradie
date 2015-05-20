@@ -1,0 +1,26 @@
+{
+  "name": "app-name",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "locomotive": "0.4.x",
+    "bootable": "0.2.x",
+    "bootable-environment": "0.2.x",
+    "express": "3.x.x",
+    "connect-powered-by": "0.1.x",
+    "ejs": "0.8.x",
+    "passport": "~0.2.0",
+    "passport-facebook": "~1.0.3",
+    "neo4j": "~1.1.0",
+    "passport-twitter": "~1.0.2",
+    "passport-google": "~0.3.0",
+    "seraph": "~0.9.4",
+    "passport-local": "^1.0.0",
+    "passport-linkedin-oauth2": "^1.1.1",
+    "nodemailer": "^0.6.4",
+    "passport-google-oauth" : "";
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

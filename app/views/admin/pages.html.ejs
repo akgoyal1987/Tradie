@@ -1,0 +1,34 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">	  
+	    	<div style="float:right; padding-bottom:10px;">
+	    		<a href="/admin/page"> Add New Page </a>
+	    	</div>  	
+	    	<h1 class="section-title">Manage Pages</h1>	    	
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+	    			<p class="toggle">You do not have any page at this moment.</p>
+					<%
+						pages.forEach(function(pg, index){						
+					%>
+				<div class="row ad-block">    				
+				<div class="col-xs-7">
+					<p class="caption">Page:</p>
+					<p class="caption-data"><%= pg.displayname %></p>
+				</div> <!--col-->
+				<div class="col-xs-3">
+					<div class="recommend-block center">						
+						<ul class="btn-group">							
+	    					<li>
+	    					<a href="/admin/page?id=<%= pg.id%>" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a>
+							</li> 												
+    					</ul>
+					</div>
+				</div> <!--col-->
+			</div> <!--row-->
+			<%});%>
+		</div> <!--tab-pane-->	    		
+    </div> <!--container-->

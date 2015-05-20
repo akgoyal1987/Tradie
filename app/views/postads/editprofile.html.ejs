@@ -1,0 +1,103 @@
+<% include  ../layout.ejs %>
+  <% include ../users/profile_panel.ejs%>
+        
+          </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+	    		<li><a href="profile.html">Profile</a></li>
+          <li>Edit Profile</li>
+	    	</ul>
+
+	    	<h1 class="section-title">Edit Profile</h1>
+
+	    	<form class="content-form">
+          <div class="clearfix upld-pic-block">
+            <div class="user-pic on-white">
+              <div class="pic-box-lg">
+                <img src="<%= user.pic %>" alt="">
+              </div> <!--pic-box-->
+            </div> <!--user-pic-->
+            <div class="form-group">
+              <label class="caption">Update Profile Picture:</label>
+              <input type="file" name="upload-pic">
+            </div> <!--form-group-->
+          </div> <!--upld-pic-block-->
+
+          <hr>
+
+          <div class="form-group">
+            <label class="caption">Current Email Address:</label>
+            <input type="email" name="current-email">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Enter New Email Address:</label>
+            <input type="email" name="new-email">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Repeat New Email Address:</label>
+            <input type="email" name="repeat-email">
+          </div> <!--form-group-->
+
+          <hr>
+
+          <div class="form-group">
+            <label class="caption">Contact Name:</label>
+            <input type="text" name="contact-name">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Phone Number:</label>
+            <input type="number" name="phone">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Address:</label>
+            <input type="email" name="address">
+            <div class="btn-location">
+              <a href="#"><i class="fa fa-crosshairs"></i></a>
+              <span class="caption">(use current location)</span>
+            </div> <!--btn-location-->
+          </div> <!--form-group-->
+
+          <div class="locate-map">
+            map to be placed inside this div
+          </div> <!--map-->
+
+          <ul class="btn-group in-row">
+            <li><a href="#" class="btn btn-primary btn-main sml">Save</a></li>
+            <li><a href="#" class="btn btn-primary btn-main sml">Cancel</a></li>
+          </ul>
+        </form>
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+
+    <!-- !!! login-popup !!!-->
+    <div class="modal fade login-popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h1>Sign in using your account with:</h1>
+          <ul>
+            <li><a href="#" class="btn-twitter"></a></li>
+            <li><a href="#" class="btn-facebook"></a></li>
+            <br>
+            <li><a href="#" class="btn-linkedin"></a></li>
+            <li><a href="#" class="btn-google"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

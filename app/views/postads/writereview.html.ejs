@@ -1,0 +1,134 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="breadcrumb">
+          <li>You are here:</li>
+          <li><a href="business-ad.html">Business AD</a></li>
+          <li>Write a Review</li>
+        </ul>
+
+        <h1 class="section-title">Write a Review</h1>
+
+        <form class="content-form" method="post" action="/writereview/<%=adid%>">
+          <div class="form-group">
+            <label>Your summary of the service (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">A short sentence which describes the standard of service received (max 50 characters).</span>
+            <input class="full" type="text" name="title">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label>Your review (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">Share your thoughts on the service to help others make a decision (max 500 characters).</span>
+            <textarea class="full review-desc" name="description"></textarea>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label>Your ratings (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">How do you rate different aspects of this service. please give your ratings.</span>
+            <div class="row rating-block">
+                <div class="col-xs-5">
+                  <div class="clearfix sub-rating">
+                    <p class="caption">Quality:</p>
+                    <div class="clearfix rating quality">
+                      <input class="Quality" type="radio" name="quality" value="1"/>
+                      <input class="Quality" type="radio" name="quality" value="2"/>
+                      <input class="Quality" type="radio" name="quality" value="3"/>
+                      <input class="Quality" type="radio" name="quality" value="4"/>
+                      <input class="Quality" type="radio" name="quality" value="5"/>
+                      </div>
+                    </div> <!--sub-rating-->
+                    <div class="clearfix sub-rating">
+                    <p class="caption">Reliability:</p>
+                    <div class="clearfix rating reliability">
+                      <input class="Reliability" type="radio" name="reliability" value="1"/>
+                      <input class="Reliability" type="radio" name="reliability" value="2"/>
+                      <input class="Reliability" type="radio" name="reliability" value="3"/>
+                      <input class="Reliability" type="radio" name="reliability" value="4"/>
+                      <input class="Reliability" type="radio" name="reliability" value="5"/>
+                      </div>
+                    </div> <!--sub-rating-->
+                    <div class="clearfix sub-rating">
+                    <p class="caption">Friendliness:</p>
+                    <div class="clearfix rating friendliness">
+                      <input class="Friendliness" type="radio" name="friendliness" value="1"/>
+                      <input class="Friendliness" type="radio" name="friendliness" value="2"/>
+                      <input class="Friendliness" type="radio" name="friendliness" value="3"/>
+                      <input class="Friendliness" type="radio" name="friendliness" value="4"/>
+                      <input class="Friendliness" type="radio" name="friendliness" value="5"/>
+                      </div>
+                    </div> <!--sub-rating-->
+                </div> <!--col-->
+                <div class="col-xs-7">
+                  <div class="main-rating to-left">
+                    <p class="caption">Overall Rating:</p>
+                    <div class="clearfix rating overall">
+                      <input class="Overall" type="radio" name="overall" value="1"/>
+                      <input class="Overall" type="radio" name="overall" value="2"/>
+                      <input class="Overall" type="radio" name="overall" value="3"/>
+                      <input class="Overall" type="radio" name="overall" value="4"/>
+                      <input class="Overall" type="radio" name="overall" value="5"/>
+                      </div>
+                    </div> <!--rating-block-->
+                </div> <!--col-->
+              </div> <!--row-->
+          </div> <!--form-group-->
+          <ul class="btn-group in-row">
+            <li><a href="/viewbusinessad?id=<%=adid%>" class="btn btn-primary btn-main sml">Cancel</a></li>
+            <li><button class="btn btn-primary btn-main" type="submit">submit</button></li>
+          </ul>
+        </form>
+      </div> <!--col-->
+    </div> <!--row-->
+    </div> <!--container-->    
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+  </body>
+  <script>
+    $(function(){
+      var qualityCount = 0;
+      var reliabilityCount = 0;
+      var friendlinessCount = 0;
+      var overallCount = 0;
+
+      $('.Quality').rating();
+      $('.Reliability').rating();
+      $('.Friendliness').rating();
+      $('.Overall').rating();      
+
+      $('.quality .rating-cancel a').click();
+      $('.reliability .rating-cancel a').click();
+      $('.friendliness .rating-cancel a').click();
+      $('.overall .rating-cancel a').click();
+
+
+      $('.Overall').rating('readOnly', true);
+      $(".Quality").change(function(){        
+        setOverallRating();
+      });
+      $(".Reliability").change(function(){        
+        setOverallRating();
+      });
+      $(".Friendliness").change(function(){        
+        setOverallRating();
+      });
+      
+      function setOverallRating(){
+        qualityCount = $(".Quality.star-rating-live.star-rating-on").length;
+        reliabilityCount = $(".Reliability.star-rating-live.star-rating-on").length;
+        friendlinessCount = $(".Friendliness.star-rating-live.star-rating-on").length; 
+        //console.log(qualityCount,reliabilityCount,friendlinessCount);
+        overallCount = parseInt((qualityCount+reliabilityCount+friendlinessCount)/3)-1;        
+        $('.Overall').rating('readOnly', false);
+        if(overallCount>=0){
+          $('.Overall').rating('select', overallCount);        
+        }
+        else
+          $('.overall .rating-cancel a').click();
+        $('.Overall').rating('readOnly', true);
+      }
+
+    });
+  </script>
+</html>

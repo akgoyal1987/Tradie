@@ -1,0 +1,93 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="breadcrumb">
+          <li>You are here:</li>
+          <li><a href="business-ad.html">Business AD</a></li>
+          <li>Write a Review</li>
+        </ul>
+
+        <h1 class="section-title">Write a Review</h1>
+
+        <form class="content-form" method="post" action="/writereview/<%=adid%>">
+          <div class="form-group">
+            <label>Your summary of the service (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">A short sentence which describes the standard of service received (max 50 characters).</span>
+            <input class="full" type="text" name="title">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label>Your review (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">Share your thoughts on the service to help others make a decision (max 500 characters).</span>
+            <textarea class="full review-desc" name="description"></textarea>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label>Your ratings (<span class="ic-mandatory">*</span>):</label>
+            <span class="caption">How do you rate different aspects of this service. please give your ratings.</span>
+            <div class="row rating-block">
+                <div class="col-xs-5">
+                  <div class="clearfix sub-rating">
+                    <p class="caption">Quality:</p>
+                    <div class="clearfix rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                      </div>
+                    </div> <!--sub-rating-->
+                    <div class="clearfix sub-rating">
+                    <p class="caption">Reliability:</p>
+                    <div class="clearfix rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                      </div>
+                    </div> <!--sub-rating-->
+                    <div class="clearfix sub-rating">
+                    <p class="caption">Friendliness:</p>
+                    <div class="clearfix rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                      </div>
+                    </div> <!--sub-rating-->
+                </div> <!--col-->
+                <div class="col-xs-7">
+                  <div class="main-rating to-left">
+                    <p class="caption">Overall Rating:</p>
+                    <div class="clearfix rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                      </div>
+                    </div> <!--rating-block-->
+                </div> <!--col-->
+              </div> <!--row-->
+          </div> <!--form-group-->
+          <input type="hidden" name="qualityratig" value="2" id="quality_rating">
+          <input type="hidden" name="reliabilityratig" value="3" id="reliability_rating">
+          <input type="hidden" name="friendlinessratig" value="2" id="friendliness_rating">
+          <input type="hidden" name="overallratig" value="2" id="overall_ratig">
+          <ul class="btn-group in-row">
+            <li><a href="/viewbusinessad?id=<%=adid%>" class="btn btn-primary btn-main sml">Cancel</a></li>
+            <li><button class="btn btn-primary btn-main" type="submit">submit</button></li>
+          </ul>
+        </form>
+      </div> <!--col-->
+    </div> <!--row-->
+    </div> <!--container-->    
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+  </body>
+</html>

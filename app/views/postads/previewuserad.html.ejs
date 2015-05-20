@@ -1,0 +1,133 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+            <li><a href="createuserad">Create AD</a></li>
+            <li>Preview AD</li>
+  	    	</ul>
+        </div> <!--col-->
+
+        <!--### people - left section ###-->
+        <div class="col-xs-8 content-form">
+  	    	<h1 class="section-title no-margin-top">AD Preview</h1>
+
+        	<h2 class="ad-title"><%=ad.adtitle%></h2>
+
+        	<div class="ad-location"><i class="fa fa-map-marker"></i><%=ad.address%></div>
+
+          <div class="block-div">
+            <p class="caption">Category:</p>
+            <p class="caption-data"><%=ad.category%></p>
+          </div> <!--block-div-->
+
+        	<div class="row block-div">
+        		<div class="col-xs-6">
+              <p class="caption">Date Listed:</p>
+              <p class="caption-data"><%=ad.startdate%></p>
+        		</div> <!--col-->
+
+        		<div class="col-xs-6">
+        			<p class="caption">Last Edited:</p>
+              <p class="caption-data"><%=ad.enddate%></p>
+        		</div> <!--col-->
+        	</div> <!--row-->
+
+          <div class="row semi-block-div">
+            <div class="col-xs-6">
+              <p class="caption">Advertised by:</p>
+              <p class="caption-data"><%=ad.contactname%></p>
+            </div> <!--col-->
+
+            <div class="col-xs-6">
+              <p class="caption">Job Type:</p>
+              <p class="caption-data"><%=ad.jobtype%></p>
+            </div> <!--col-->
+          </div> <!--row-->
+
+        	<div class="block-div">
+        		<p class="caption">Description:</p>
+        		<p class="caption-data"><%=ad.description%></p>
+
+            <p class="caption-data">Please email resume and expression of interest to <a href="#" class="text-link"><%=ad.email%></a></p>
+        	</div> <!--block-div-->
+
+          <div class="block-div">
+            <p class="caption">Images:</p>
+            <div class="clearfix ad-images pic-container">
+
+              <% if(images){
+                  images.forEach(function(image, index) { 
+              %>            
+                  <div class="ad-media top-row"> <!--pic_<%=index%>-->
+                    <div class="media-box media-lrg">
+                      <img src="<%="uploads/photos/"+aduser.id+"/"+ad.id+"/"+image.photo%>" alt="">
+                    </div> <!--media-box-->
+                  </div> <!--ad-media-->
+              <%
+                  });
+              }%>
+
+              </div> <!--pic-container-->
+            </div> <!--block-div-->
+
+        	<ul class="btn-group in-row">
+	            <li><a href="edituserad?id=<%=ad.id%>" class="btn btn-primary btn-main sml">Edit</a></li>
+	            <li><a href="publishuserad?id=<%=ad.id%>" class="btn btn-primary btn-main sml">Publish</a></li>
+            </ul>
+  		</div> <!--col-->
+
+        <!--### sidebar - right section ###-->
+        <div class="col-xs-4">
+            <div class="clearfix side-block">
+            	<h3 class="side-block-title">AD Posted by:</h3>
+
+            	<div class="clearfix user-block">
+		            <div class="user-pic on-white">
+		            	<div class="pic-box-lg">
+                    <% if(aduser.photourl){ %>
+                      <img src="<%=aduser.photourl%>" alt="">
+                    <%}else{%>
+		            		  <img src="images/no-pic.png" alt="">
+                    <%}%>
+		            	</div> <!--pic-box-->
+		            </div> <!--user-pic-->
+		            <div class="user-detail">
+		            	<p><%=aduser.name%></p>
+		            	<p class="caption">Member Since <%=aduser.createddate%></p>
+		            </div> <!--user-detail-->
+		        </div> <!--user-block-->
+            </div>
+
+            <div class="ad-location-map" id="map-canvas" style="min-height: 250px;">
+            </div> <!--ad-location-map-->
+        </div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(22.7253, 75.8655);
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 12
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);                      
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>),
+          title: '<%=ad.address%>'
+        });                        
+        marker.setMap(map);
+        map.setCenter(new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>));    
+      }      
+      google.maps.event.addDomListener(window, 'load', initialize);        
+      </script>
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+  </body>
+</html>

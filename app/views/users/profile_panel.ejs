@@ -1,0 +1,57 @@
+<!-- !!! profile-panel !!!-->
+<div class="sub-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      	<div class="clearfix user-block margin-top">
+          <div class="user-pic on-white">
+          	<div class="pic-box-lg">
+          		<img src="<%= data.user.photourl %>" alt="">
+          	</div> <!--pic-box-->
+          </div> <!--user-pic-->
+          <div class="user-detail on-panel">
+          	<% if(data.user) { %>
+            	<p><%= data.user.name %></p>
+						<% } %>
+            <% if(data.user.id == user.id) { %>
+          	<a href="/editprofile" class="btn btn-primary btn-main sml">Edit Profile</a>
+            <% } %>
+          </div> <!--user-detail-->
+      </div> <!--user-block-->
+      <ul class="user-navigation">
+        <li><a id="hlAds" href="/profile/<%= data.user.id %>" class="active"><span class="count"><%= data.adcount %></span>Ads</a></li>
+        <li><a id="hlFollowing" href="/followings/<%= data.user.id %>"><span class="count"><%= data.followingcount %></span>Following</a></li>
+        <li><a id="hlFollower" href="/followers/<%= data.user.id %>"><span class="count"><%= data.followercount %></span>Followers</a></li>
+        <li><a id="hlRecommendation" href="/recommendations/<%= data.user.id %>"><span class="count"><%= data.recommendationcount %></span>Recommendations</a></li>
+        <li><a id="hlWatchlist" href="/watchlists/<%= data.user.id %>"><span class="count"><%= data.watchlistcount %></span>Watchlist</a></li>
+      </ul>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    var url = window.location;
+    jQuery(".user-navigation a").each(function(){
+      jQuery(this).removeClass("active");
+    });
+    if(url.toString().indexOf("following") != -1)
+    {
+      jQuery("#hlFollowing").addClass("active");
+    }
+    else if(url.toString().indexOf("follower") != -1)
+    {
+      jQuery("#hlFollower").addClass("active");
+    }
+    else if(url.toString().indexOf("profile") != -1 || url.toString().indexOf("users") != -1)
+    {
+      jQuery("#hlAds").addClass("active");
+    }
+    else if(url.toString().indexOf("recommendation") != -1)
+    {
+      jQuery("#hlRecommendation").addClass("active");
+    }
+    else if(url.toString().indexOf("watchlist") != -1)
+    {
+      jQuery("#hlWatchlist").addClass("active");
+    }
+  });
+</script>
+      

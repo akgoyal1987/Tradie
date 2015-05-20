@@ -1,0 +1,85 @@
+<% include  ../layout.ejs %>
+
+    <!-- Search Panel -->
+    <% include ../search_panel.ejs %>
+    
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Featured Ads</h1>
+        <div class="clearfix slider">
+          
+          <% ads.forEach(function(ad,i){ %>                        
+          <div class="slider-content">
+            <div class="slider-pic">
+                <% if (ad.imageurl && ad.imageurl!=""){%>
+                  <img src="<%=ad.imageurl%>" alt="">
+                <%} else {%>
+              <img src="images/img01.jpg" alt="">
+                <%}%>
+            </div> <!--slider-pic-->
+            <ul>
+                <li><%=ad.title%></li>
+                <% if(ad.adtype=="tradesman") { %>
+                <li><a href="<%="viewbusinessad?id="+ad.adid%>"# class="text-link">view details</a></li>
+                <% } else {%>
+                <li><a href="<%="viewuserad?id="+ad.adid%>"# class="text-link">view details</a></li>
+                <% } %>
+            </ul>
+          </div> <!--slider-content-->
+          <% });%>
+
+        </div> <!--slider-->
+        </div> <!--col-->
+      </div> <!--row-->
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="mid-layer">
+            <ul class="border-right">
+              <li>Hi, I’m a Trademan<span class="arrow-ic"></span></li>
+              <% if(user != null){ %>
+                <li><a href="/createbusinessad" class="btn btn-primary btn-main lrge-size">I Want to Offer a Service</a></li>
+              <% }else{ %>
+                <li><a href="#" data-toggle="modal" data-target=".login-popup" class="btn btn-primary btn-main lrge-size">I Want to Offer a Service</a></li>
+              <% } %>
+            </ul>
+            <ul class="border-left">
+              <li>Hi, I’m a Consumer<span class="arrow-ic"></span></li>
+              <% if(user != null){ %>
+              <li><a href="/createuserad" class="btn btn-primary btn-main lrge-size">I Want to Find a Service</a></li>
+              <% }else{ %>
+              <li><a href="#" data-toggle="modal" data-target=".login-popup" class="btn btn-primary btn-main lrge-size">I Want to Find a Service</a></li>
+              <% } %>
+            </ul>
+          </div> <!--mid-layer-->
+        </div> <!--col-->
+      </div> <!--row-->
+
+      <div class="row">
+        <div class="col-xs-6">
+          <h1>Why Tradie?</h1>
+          <ul class="tradie-helps">
+            <li>Find tradesmen your friends are using</li>
+            <li>Recommend tradesmen to your friends</li>
+            <li>Advertise as a tradesmen</li>
+          </ul>
+          <a href="#" data-toggle="modal" data-target=".login-popup" class="btn btn-primary btn-main lrge-size entr">Enter Tradie</a>
+        </div> <!--col-->
+        <div class="col-xs-6 center">
+          <div class="post-ad-block">
+            <ul>
+              <li>It's <span class="semibold">Free</span>, <span class="semibold">Easy</span> & <span class="semibold">Local</span></li>
+              <% if(user != null){ %>
+              <li><a href="/createuserad" class="btn btn-primary btn-main lrge-size">Post an Ad Now</a></li>
+              <% }else{ %>
+              <li><a data-toggle="modal" data-target=".login-popup" class="btn btn-primary btn-main lrge-size">Post an Ad Now</a></li>
+              <% } %>
+            </ul>
+          </div> <!--post-ad-block-->
+        </div> <!--col-->
+      </div> <!--row-->
+    </div> <!--container-->
+    
+<% include ../footer.ejs %>

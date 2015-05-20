@@ -1,0 +1,37 @@
+ <!-- !!! footer !!!-->
+    <div class="footer-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-4">
+            <ul class="footer-nav">
+              <li>Tips & Help</li>
+               <% pages.forEach(function(page, index){%>
+         <li><a href="/pages/<%=page.name%>"><%=page.displayname%></a></li> 
+ <%})%>
+            </ul>
+          </div> <!--col-->
+          <div class="col-xs-4">
+            <ul class="footer-nav">
+              <li>Legal Bits</li>
+              <li><a href="/pages/terms&conditions">Terms of Use</a></li>
+              <li><a href="/pages/privacypolicy">Privacy Policy</a></li>
+              <li><a href="/pages/postingpolicy">Posting Policy</a></li>
+            </ul>
+          </div> <!--col-->
+          <div class="col-xs-4">
+            <ul class="social-nav">
+              <li>Follow Us</li>
+              <li><a href="http://www.twitter.com" target="_blank" class="twitter"><span></span></a></li>
+              <li><a href="http://www.facebook.com" target="_blank" class="facebook"><span></span></a></li>
+              <li><a href="http://www.linkedin.com" target="_blank" class="linkedin"><span></span></a></li>
+              <li><a href="http://www.google.com" target="_blank" class="gplus"><span></span></a></li>
+            </ul>
+          </div> <!--col-->
+        </div> <!--row-->
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="copyright">&copy;2014 Tradie</p>
+          </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--footer-wrapper-->

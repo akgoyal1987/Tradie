@@ -1,0 +1,63 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Tradie</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+          <a id="hlManagePages" data-toggle="dropdown" class="dropdown-toggle" href="#">Manage</a>
+            <ul class="dropdown-menu">
+            <li><a href="/admin/advertisedby">Advertised By</a></li>
+            <li><a href="/admin/categories">Categories</a></li>            
+            <!--<li><a href="/admin/jobtypes">Job Types</a></li>-->
+            <li><a href="/admin/locations">Locations</a></li>
+            <li><a href="/admin/pages">Pages</a></li>
+            </ul>
+          </li>          
+          <li><span class="nav-sepr"></span></li>
+          <li><a id="hlSpanAds" href="/admin/spamads">Spam Ads</a></li>
+          <li><span class="nav-sepr"></span></li>
+          <li><a id="hlFeaturedAds" href="/admin/featuredads">Featured Ads</a></li>
+          <li><span class="nav-sepr"></span></li>          
+          <li><a id="hlTradies" href="/admin/tradesman">Tradies</a></li>
+          <li><span class="nav-sepr"></span></li>          
+          <li><a id="hlUsers" href="/admin/users" class="active">Users</a></li>
+          <li><span class="nav-sepr"></span></li>
+          <li class="logn-link"><a href="/adminlogout">Logout</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+<script type="text/javascript">
+    var url = window.location;
+    jQuery(".navbar-right a").each(function(){
+      jQuery(this).removeClass("active");
+    });
+    if(url.toString().indexOf("users") != -1)
+    {
+      jQuery("#hlUsers").addClass("active");
+    }
+    else if(url.toString().indexOf("tradesman") != -1)
+    {
+      jQuery("#hlTradies").addClass("active");
+    }
+    else if(url.toString().indexOf("featuredads") != -1)
+    {
+      jQuery("#hlFeaturedAds").addClass("active");
+    }
+    else if(url.toString().indexOf("spamads") != -1)
+    {
+      jQuery("#hlSpamAds").addClass("active");
+    }
+    else if(url.toString().indexOf("pages") != -1 || url.toString().indexOf("advertisedby") != -1 || url.toString().indexOf("categories") != -1 || url.toString().indexOf("jobtypes") != -1 || url.toString().indexOf("locations") != -1)
+    {
+      jQuery("#hlManagePages").addClass("active");
+    }    
+  </script>

@@ -1,0 +1,67 @@
+<!-- !!! search-panel !!!-->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <form class="clearfix primary-search" method="post" action="/search">
+              <div class="form-group">
+                <label>Enter Keyword:</label>
+                <input type="text" name="keyword" placeholder="ex: floorboards, spa pool...">
+              </div> <!--form-group-->
+              <div class="form-group">
+                <label>Select Category:</label>
+                <input type="text" placeholder="Enter Categpry" id="category" />
+              </div> <!--form-group-->
+              <div class="form-group">
+                <label>Select Location:</label>
+                <input type="text" placeholder="Enter Location..." id="location" />
+              </div> <!--form-group-->
+              <div class="form-group distance">
+                <label>Select Distance:</label>
+                <select name="distance">
+                  <option>+ 0km</option>
+                  <option>+ 1km</option>
+                  <option>+ 1.5km</option>
+                  <option>+ 2km</option>
+                </select> 
+               
+              </div> <!--form-group-->
+              <div class="form-group">
+                <button class="btn btn-primary btn-main" name="submit" type="submit">Search<i class="fa fa-angle-double-right"></i></button>
+                
+              </div> <!--form-group-->
+            </form>
+          </div>
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+var availableLocations = [];
+var availableCategories = [];
+
+$(function() {
+  <% data.forEach(function(data, index){%>
+    availableLocations.push("<%=data.address%>");
+  <%})%>
+  $( "#location" ).autocomplete({source: availableLocations});
+  <% categories.forEach(function(cat, index){%>
+    availableCategories.push("<%=cat.categoryname%>");
+  <%})%>
+  $( "#category" ).autocomplete({source: availableCategories});
+});
+</script>
+    <style>      
+      .chosen-container-single .chosen-single {
+          border: medium none;
+          border-radius: 0;
+          font-size: 14px;
+          height: 30px;
+          padding: 4px 10px;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: 600;
+          letter-spacing: 0.1px;
+      } 
+    </style>

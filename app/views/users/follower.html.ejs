@@ -1,0 +1,66 @@
+<% include  ../layout.ejs %>
+  <% include profile_panel.ejs %>
+    </div> <!--col-->
+  </div> <!--row-->
+</div> <!--container-->
+</div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+	    		<li>Profile</li>
+	    	</ul>
+
+	    	<h1 class="section-title">People - Who Follow You!</h1>
+	    	<% if(results.length == 0){%>
+        	<p>You do not have any people following you.</p>
+        	<% }else {
+				for(var i = 0; i < results.length; i++){
+			%>
+	    	<div class="clearfix my-connection">
+	    		<div class="clearfix user-block">
+		            <div class="user-pic on-white">
+		            	<div class="pic-box-lg">
+		            		<img src="<%= results[i].user.photourl %>" alt="">
+		            	</div> <!--pic-box-->
+		            </div> <!--user-pic-->
+		            <div class="user-detail">
+		            	<p><%= results[i].user.name %></p>
+		            	<a href="/profile/<%=results[i].user.id%>" class="btn btn-primary btn-main sml">View Profile</a>
+		            </div> <!--user-detail-->
+	        	</div> <!--user-block-->
+	            <ul class="user-navigation">
+	            	<li class="border-right"><a href="#"><span class="count"><%= results[i].user.followers %></span>Followers</a></li><li class="border-left border-right"><a href="#"><span class="count"><%= results[i].user.followings %></span>Followings</a></li><li class="border-left"><a href="#"><span class="count"><%= results[i].user.recommendations %></span>Recommendations</a></li>
+	            </ul>
+	    	</div> <!--my-connection-->
+	    	<% }}%>
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+
+    <!-- !!! login-popup !!!-->
+    <div class="modal fade login-popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h1>Sign in using your account with:</h1>
+          <ul>
+            <li><a href="#" class="btn-twitter"></a></li>
+            <li><a href="#" class="btn-facebook"></a></li>
+            <br>
+            <li><a href="#" class="btn-linkedin"></a></li>
+            <li><a href="#" class="btn-google"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

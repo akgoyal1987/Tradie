@@ -1,0 +1,31 @@
+version mismatch between local (0.4.2) and global (undefined) Locomotive module
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+in development config
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+HTTP server listening on 0.0.0.0:5000
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /?keyword=&category=Carpenter&location=Location+1&distance=%2B+0km&submit= HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /stylesheets/font-awesome.min.css HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /stylesheets/style.css HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /javascripts/jquery.js HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /javascripts/bootstrap.min.js HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/img01.jpg HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /stylesheets/bootstrap.min.css HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/img02.jpg HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/img04.jpg HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/img03.jpg HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /fonts/sansation_bold-webfont.woff HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/arrow.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/bullet1.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/ic-twitter.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/ic-twitter-on.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:49 GMT] "GET /images/ic-facebook.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/ic-facebook-on.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/ic-linkedin.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/ic-linkedin-on.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/ic-gplus.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/ic-gplus-on.png HTTP/1.1" 304 - "http://dev.readythecatapult.com:5000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+208.78.49.51 - - [Wed, 09 Apr 2014 10:20:50 GMT] "GET /images/favicon.png HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"

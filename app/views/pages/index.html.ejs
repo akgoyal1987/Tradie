@@ -1,0 +1,198 @@
+<% include  ../layout.ejs %>
+
+    <!-- !!! profile-panel !!!-->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+          	<div class="clearfix user-block margin-top">
+	            <div class="user-pic on-white">
+	            	<div class="pic-box-lg">
+	            		<img src="<%= user.pic %>" alt="">
+	            	</div> <!--pic-box-->
+	            </div> <!--user-pic-->
+	            <div class="user-detail on-panel">
+	            	<% if(user) { %>
+		            	<p><%= user.name %></p>
+								<% } %>
+	            	<a href="#" class="btn btn-primary btn-main sml">Edit Profile</a>
+	            </div> <!--user-detail-->
+	        </div> <!--user-block-->
+
+            <ul class="user-navigation">
+            	<li><a href="#" class="active"><span class="count">3</span>Ads</a></li>
+            	<li><a href="/following/<%= user.id %>"><span class="count">10</span>Following</a></li>
+            	<li><a href="/follower/<%= user.id %>"><span class="count">2</span>Followers</a></li>
+            	<li><a href="/recommendation/<%= user.id %>"><span class="count">3</span>Recommendations</a></li>
+            	<li><a href="#"><span class="count">3</span>Watchlist</a></li>
+            </ul>
+          </div> <!--col-->
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+	    		<li>Profile</li>
+	    		<li><a href="#">Edit Profile</a></li>
+	    	</ul>
+
+	    	<h1 class="section-title">ADs</h1>
+
+	    	<ul class="nav nav-tabs">
+	    		<li class="active"><a href="#current-ads" data-toggle="tab">Current Ads (<span>3</span>)</a></li>
+	    		<li><a href="#expired-ads" data-toggle="tab">Expired Ads (<span>1</span>)</a></li>
+	    		<li><a href="#pending-ads" data-toggle="tab">Pending Ads (<span>0</span>)</a></li>
+	    	</ul>
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+	    			<p class="toggle">You do not have any current ads at this moment.</p>
+	    			<div class="row ad-block">
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="images/media01.jpg" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data">Free Range Lawyers Access Services</p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data">Accessible, Affordable, Anywhere, Anytime</p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a></li>
+	    						<li class="toggle"><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    			<div class="row ad-block"> <!--second ad data-->
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="images/no-image.jpg" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a></li>
+	    						<li class="toggle"><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    			<div class="row ad-block"> <!--third ad data-->
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="images/no-image.jpg" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a></li>
+	    						<li class="toggle"><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    		</div> <!--tab-pane-->
+	    		<!-- ### expired ads data ###-->
+	    		<div class="tab-pane" id="expired-ads">
+	    			<p class="toggle">You do not have any expired ads at this moment.</p>
+	    			<div class="row ad-block">
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="images/media01.jpg" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data">This is a dummy ad.</p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data">Dummy ad description to appear here.</p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a></li>
+	    						<li class="toggle"><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    		</div> <!--tab-pane-->
+	    		<!-- ### pending ads data ###-->
+	    		<div class="tab-pane" id="pending-ads">
+	    			<p>You do not have any pending ads at this moment.</p>
+	    			<div class="row ad-block toggle">
+	    				<div class="col-xs-2">
+	    					<div class="ad-media">
+	    						<div class="media-box media-lrg">
+	    							<img src="images/media01.jpg" alt="">
+	    						</div> <!--media-box-->
+	    					</div> <!--ad-media-->
+	    				</div> <!--col-->
+	    				<div class="col-xs-8">
+	    					<p class="caption">Title:</p>
+	    					<p class="caption-data">Free Range Lawyers Access Services</p>
+
+	    					<p class="caption">Description:</p>
+	    					<p class="caption-data">Accessible, Affordable, Anywhere, Anytime</p>
+	    				</div> <!--col-->
+	    				<div class="col-xs-2">
+	    					<ul class="btn-group">
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Edit</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> Publish</a></li>
+	    						<li class="toggle"><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-eye-slash"></i> Unpublish</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a></li>
+	    						<li><a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-trash-o"></i> Delete</a></li>
+	    					</ul>
+	    				</div> <!--col-->
+	    			</div> <!--row-->
+	    		</div> <!--tab-pane-->
+	    	</div> <!--tab-content-->
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+

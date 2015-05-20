@@ -1,0 +1,67 @@
+var locomotive = require('locomotive')
+  , Controller = locomotive.Controller
+  , passport = require('passport')
+  , User = require('../models/user')
+  , Usertypes = require('../models/usertypes')
+  ;
+
+var AuthController = new Controller();
+
+AuthController.facebook = function() {
+    // does nothing, only a placeholder for the following hook.
+}
+
+AuthController.before('facebook', passport.authenticate('facebook'));
+
+AuthController.callback = function() {
+  // This will only be called when authentication succeeded. 
+ var req = this.req;
+ var th = this;
+ var user = new User(req.user._json);
+ console.log("User ====== ", user);
+ User.getUserType(user,function (err, relationships) {
+  console.log("UserTpes:::::::",relationships);
+  if(relationships){
+    th.redirect('/users');  
+  }else{
+    th.redirect('/logintype');
+  } 
+ });  
+}
+
+AuthController.before('callback', passport.authenticate('facebook',	{failureRedirect: '/'}));
+
+AuthController.twitter = function() {
+    // does nothing, only a placeholder for the following hook.
+}
+
+AuthController.before('twitter', passport.authenticate('twitter'));
+
+AuthController.callbackTwitter = function() {
+  // This will only be called when authentication succeeded.
+  this.redirect('/users');
+}
+
+AuthController.before('callback_twitter', passport.authenticate('twitter',	{failureRedirect: '/'}));
+
+AuthController.google = function() {
+    // does nothing, only a placeholder for the following hook.
+}
+
+AuthController.before('google', passport.authenticate('google'));
+
+AuthController.returngoogle = function() {
+  // This will only be called when authentication succeeded.
+  this.redirect('/users');
+}
+
+AuthController.before('returngoogle', passport.authenticate('google',	{failureRedirect: '/'}));
+
+AuthController.logout = function(){
+	var req = this.req;
+	var res = this.res;
+  req.logout();
+  res.redirect('/');
+}
+
+module.exports = AuthController;

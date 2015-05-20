@@ -1,0 +1,435 @@
+<% include  ../layout.ejs %>
+
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+          <li>Create AD</li>
+	    	</ul>
+
+	    	<h1 class="section-title">Create AD</h1>
+
+	    	<form class="content-form" action="/editbusinessad" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="caption">Select a Category (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="category" id="category" value="<%=ad.category%>" required>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Strat Date (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="startdate" id="startdate" value="<%=ad.startdate%>" readonly required>
+          </div> <!--form-group--> 
+          <div class="form-group">
+            <label class="caption">End Date (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="enddate" id="enddate"  value="<%=ad.enddate%>" readonly required>
+          </div> <!--form-group--> 
+          <div class="form-group">
+            <label class="caption">KeyWords:</label>
+            <input type="text" name="keywords" value="<%=ad.keywords%>">
+          </div> <!--form-group--> 
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">Business Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">Business Title (<span class="ic-mandatory">*</span>):</label>
+            <input class="full" type="text" value="<%=ad.adtitle%>" name="adtitle" required>
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Give your AD a descriptive title to improve its visibility.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Slogan / Tagline / Motto:</label>
+            <input class="full" type="text" value="<%=ad.slogan%>" name="slogan">
+            <p class="form-note"><i class="fa fa-hand-o-right"></i> A short sentence which describes your service and makes you stand out from the competition.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Description :</label>
+            <textarea class="full" name="description"><%=ad.description%></textarea>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Add Business Logo(<span class="ic-mandatory">*</span>):</label>
+            <div class="clearfix upld-pic-block">
+              <div class="ad-media top-row"> <!--pic01-->
+                <div class="media-box media-lrg">
+                  <% if(images && images[0]){%>
+                  	  <img src="<%="uploads/photos/"+user.id+"/"+ad.id+"/"+images[0].photo%>" alt="" id="imgbusinesslogo" gt="#businesslogo">                                          
+	                <%} else {%>
+                      <img src="images/no-image.jpg" alt="" id="imgbusinesslogo" tgt="#businesslogo">
+	                <%}%>                  
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="form-group">
+              	<input type="hidden" name="pic_1_src" id="pic_1_src">
+              	<input type="hidden" name="adid" value=<%=ad.id%>>
+                <input type="file" name="businesslogo" id="businesslogo" tgt="#imgbusinesslogo" style="display:none">
+              </div> <!--form-group-->
+            </div> <!--upld-pic-block-->
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>ADs with business logo receives more response from users.</p>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Hours of Operation:</label>
+            <div class="clearfix">
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input <%if(ad.monday=="on"){%>checked="checked"<%}%> type="checkbox" name="monday">
+                    Monday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="mondayam"  value="<%=ad.mondayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="mondaypm" value="<%=ad.mondaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="tuesday" <%if(ad.tuesday=="on"){%>checked="checked"<%}%>>
+                    Tuesday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="tuesdayam" value="<%=ad.tuesdayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="tuesdaypm" value="<%=ad.tuesdaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="wednesday"  <%if(ad.wednesday=="on"){%>checked="checked"<%}%>>
+                    Wednesday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="wednesdayam" value="<%=ad.wednesdayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="wednesdaypm" value="<%=ad.wednesdaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="thursday"  <%if(ad.thursday=="on"){%>checked="checked"<%}%>>
+                    Thursday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="thursdayam" value="<%=ad.thursdayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="thursdaypm" value="<%=ad.thursdaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="friday" <%if(ad.friday=="on"){%>checked="checked"<%}%>>
+                    Friday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="fridayam" value="<%=ad.fridayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="fridaypm" value="<%=ad.fridaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="saturday"  <%if(ad.saturday=="on"){%>checked="checked"<%}%>>
+                    Saturday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="saturdayam" value="<%=ad.saturdayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="saturdaypm" value="<%=ad.saturdaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+              <div class="clearfix hour-block">
+                <div class="center">
+                  <label class="chkbx-wrapper">
+                    <input type="checkbox" name="sunday" <%if(ad.sunday=="on"){%>checked="checked"<%}%>>
+                    Sunday
+                  </label>
+                </div> <!--center-->
+                <div class="clearfix time-block">
+                  <label class="time-wrapper caption">
+                    <input type="text" name="sundayam" value="<%=ad.sundayam%>">
+                    AM
+                  </label>
+                  <label class="time-wrapper caption">
+                    <input type="text" name="sundaypm" value="<%=ad.sundaypm%>">
+                    PM
+                  </label>
+                </div> <!--time-block-->
+              </div> <!--hour-block-->
+            </div> <!--clearfix-->  
+          </div> <!--form-group-->          
+
+          <div class="form-group">
+            <label class="caption">Accrediation:</label>
+            <input type="text" class="full" name="accrediation" value="<%=ad.accrediation%>">
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>If you are a member of an organisation or a licensed professional, please mention.</p>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">ABN (11 Digit Number):</label>
+            <input type="text" name="abn" value="<%=ad.abn%>">
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Areas of Expertise (Any 5):</label>
+            <input type="text" class="full" name="areaofexpertise"  value="<%=ad.areaofexpertise%>">
+          </div> <!--form-group-->
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">Contact Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">Email Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="email" name="email" required  value="<%=ad.email%>">
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Your email address will not be displayed publicly.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Contact Name :</label>
+            <input type="text" name="contactname" value="<%=ad.contactname%>">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Phone Number :</label>
+            <input type="number" name="phone" value="<%=ad.phone%>">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="address" id="address" required  value="<%=ad.address%>">
+            <div class="btn-location">
+              <a href="#"><i class="fa fa-crosshairs"></i></a>
+              <span class="caption">(use current location)</span>
+            </div> <!--btn-location-->
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Help users to locate your AD by entering your full address or suburb.</p>
+          </div> <!--form-group-->
+          <input type="hidden" name="latitude" id="latitude"  value="<%=ad.latitude%>">
+          <input type="hidden" name="longitude" id="longitude" value="<%=ad.longitude%>">
+          <div class="locate-map" id="map">
+          </div> <!--map-->
+          <br />
+          <ul class="btn-group in-row">
+            <li><a href="/" class="btn btn-primary btn-main sml">Cancel</a></li>
+            <input type="hidden" name="status" id="status"/>            
+            <li><button type="submit"  id="submit_button" class="btn btn-primary btn-main sml">Save</button></li>
+          </ul>
+        </form>
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<%if(mapkey){%>key=<%=mapkey%><%}%>&sensor=false"></script>
+    <script type="text/javascript">
+    var marker = null;
+    var map;            
+    var i=1;
+    $(function() {
+        $( "#startdate" ).datepicker({
+                showOn: "both",
+                buttonImage: "calendar/calendar.gif",
+                buttonImageOnly: true,
+                dateFormat: "yy/mm/dd"
+        });
+        $( "#enddate" ).datepicker({
+                showOn: "both",
+                buttonImage: "calendar/calendar.gif",
+                buttonImageOnly: true,
+                dateFormat: "yy/mm/dd"
+        });
+    });
+    jQuery(document).ready(function(){           
+      $(".upld-pic-block img").click(function(){
+        $($(this).attr('tgt')).trigger('click');
+      });
+      $(".upld-pic-block input[type='file']").change(function(){
+        readURL(this,$(this).attr('tgt'));
+        $("#pic_1_src").val("newFile");
+      });
+      initialize();
+      $("#preview_ad").click(function(){
+        $("#status").val(0);
+      });
+      $("#submit_ad").click(function(){
+        $("#status").val(1);
+      });
+    });
+    function readURL(input, target) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(target).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function initialize() {        
+      lat = -37.821242;
+      lng = 144.983191; 
+      if($("#latitude").val() != "")
+      {
+        lat = $("#latitude").val();
+      }
+      
+      if($("#longitude").val() != "")
+      {
+        lng = $("#longitude").val();
+      }
+        var mapcanvas = document.createElement('div');
+        mapcanvas.id = 'mapcanvas';
+        mapcanvas.style.height = "200px";
+        mapcanvas.style.width = '100%';
+        mapcanvas.style.position = 'fixed';
+        document.querySelector('#map').appendChild(mapcanvas);        
+        var latlng = new google.maps.LatLng(lat, lng);
+        var myOptions = {
+            zoom: 13,
+            center: latlng,
+            mapTypeControl: false,
+            navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+        geocoder = new google.maps.Geocoder();
+        marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            draggable: true,
+            icon: 'images/marker_green.png',
+            title: "You are here!"
+        });
+        google.maps.event.addListener(marker, "dragend", function (event) {
+            var point = marker.getPosition();
+            map.panTo(point);     
+            codeLatLng(marker.getPosition().lat(), marker.getPosition().lng());
+        });               
+    };   
+    
+    function codeLatLng(lat,lng) {
+        var latlng = new google.maps.LatLng(lat, lng);
+
+        setTimeout(function () {
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {            
+                if (status == google.maps.GeocoderStatus.OK) {
+                    $("#address").val(results[0].formatted_address);
+                    $("#latitude").val(lat);
+                    $("#longitude").val(lng);
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+        }, 1500);
+    } 
+    $("#address").blur(function(){
+              //var address=$("#city").val()+"+"+$("#state").val()+"+"+$("#zipcode").val();//address which you want Longitude and Latitude
+                jQuery.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://maps.googleapis.com/maps/api/geocode/json",
+                data: {'address': $("#address").val(),'sensor':false},
+                    success: function(data){
+                      var newPosition = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
+                      jQuery("#latitude").val(data.results[0].geometry.location.lat);
+                      jQuery("#longitude").val(data.results[0].geometry.location.lng);
+                      map.setCenter(newPosition);
+                      if(marker==null){
+                      marker = new google.maps.Marker({
+                          position: newPosition,
+                          title: data.results[0].formatted_address,
+                        draggable:true
+                      });
+                        marker.setMap(map);
+                        google.maps.event.addListener(marker, 'dragend', function() { 
+              url = "https://maps.googleapis.com/maps/api/geocode/json";
+              jQuery.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    data: {'latlng':marker.position.lat()+","+marker.position.lng(), "sensor":true},
+                    success: function(data){
+                                var addComps = data.results[0].address_components;
+                                jQuery("#latitude").val(data.results[0].geometry.location.lat);
+                                jQuery("#longitude").val(data.results[0].geometry.location.lng);
+                            jQuery("#address").val(data.results[0].formatted_address);                           
+                                marker.setTitle(data.results[0].formatted_address);
+                              },
+                              error: function(err){          
+                                console.log(err)
+                              }
+                          });
+                        }); 
+                      }else{
+                        marker.setPosition(newPosition);
+                        marker.setTitle(data.results[0].formatted_address);                        
+                      }
+                    },
+                    error: function(err){          
+                      console.log(err)
+                    }
+                });
+            });
+    </script>
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+
+    <!-- !!! login-popup !!!-->
+    <div class="modal fade login-popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h1>Sign in using your account with:</h1>
+          <ul>
+            <li><a href="#" class="btn-twitter"></a></li>
+            <li><a href="#" class="btn-facebook"></a></li>
+            <br>
+            <li><a href="#" class="btn-linkedin"></a></li>
+            <li><a href="#" class="btn-google"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

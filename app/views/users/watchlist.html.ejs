@@ -1,0 +1,91 @@
+<% include  ../layout.ejs %>
+  <% include profile_panel.ejs %>
+      </div> <!--col-->
+    </div> <!--row-->
+  </div> <!--container-->
+</div> <!--sub-header-->
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+	    		<li>Profile</li>
+	    		<li>Watchlists</li>
+	    	</ul>
+
+	    	<h1 class="section-title">Watchlists</h1>
+	    	<% if(results.length == 0){%>
+	    		<p>You do not have any watchlist at this moment.</p>
+	    	<% }else {
+				for(var i = 0; i < results.length; i++){
+				var photopath = "/images/no-image.jpg"; 
+				if(results[i].ad.photo != null)
+				{
+					photopath = "/uploads/photos/" + results[i].uid + "/" + results[i].ad.adid + "/" + results[i].ad.photo;
+				}
+				if(i == 0){
+			%>
+			<div class="row ad-block no-padding-top">
+			<%}else{%>			
+				<div class="row ad-block padding-top">
+			<%}%>
+				<div class="col-xs-2">
+					<div class="ad-media">
+						<div class="media-box media-lrg">
+							<img src="<%= photopath %>" alt="">
+						</div> <!--media-box-->
+					</div> <!--ad-media-->
+				</div> <!--col-->
+				<div class="col-xs-7">
+					<p class="caption">Title:</p>
+					<p class="caption-data"><%= results[i].ad.adtitle %></p>
+
+					<p class="caption">Description:</p>
+					<p class="caption-data"><%= results[i].ad.description %></p>
+				</div> <!--col-->
+				<div class="col-xs-3">
+					<div class="recommend-block center">						
+						<% if(results[i].uid != user.id){%>
+						<% if(results[i].ad.isWatched == 0){%>
+						<a id="hl_watch_<%= results[i].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= results[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Watchlist</a>
+	    				<a id="hl_unwatch_<%= results[i].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= results[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> UnWatch</a>
+						<%}else {%> 
+						<a id="hl_watch_<%= results[i].ad.adid %>"  href="javascript:void(0);" onclick="addAdToWatchlist(<%= results[i].ad.adid %>)" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Watchlist</a>
+	    				<a id="hl_unwatch_<%= results[i].ad.adid %>" href="javascript:void(0);" onclick="removeAdFromWatchlist(<%= results[i].ad.adid %>)" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> UnWatch</a>
+						<%}}%>
+						<% if(results[i].utype == "user"){%>
+						<br /><br /><a href="/viewuserad?id=<%= results[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a>
+						<% }else if(results[i].utype == "tradesman"){%><br />
+						<br /><br /><a href="/viewbusinessad?id=<%= results[i].ad.adid %>" class="btn btn-primary btn-main sml"><i class="fa fa-eye"></i> View Ad</a>
+						<%}%>
+					</div>
+				</div> <!--col-->
+			</div> <!--row-->
+			<% }}%>
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+
+    <!-- !!! login-popup !!!-->
+    <div class="modal fade login-popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h1>Sign in using your account with:</h1>
+          <ul>
+            <li><a href="#" class="btn-twitter"></a></li>
+            <li><a href="#" class="btn-facebook"></a></li>
+            <br>
+            <li><a href="#" class="btn-linkedin"></a></li>
+            <li><a href="#" class="btn-google"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

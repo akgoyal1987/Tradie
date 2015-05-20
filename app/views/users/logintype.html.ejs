@@ -1,0 +1,39 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+  	    		<li><a href="index.html">Home</a></li>
+            <li>Who Are You?</li>
+  	    	</ul>
+
+  	    	<h1 class="section-title">Who Are You?</h1>
+
+  	    	<form id="login-type" class="content-form" action="/logintype" method="post">
+            <div class="form-group">
+              <label class="act-wrapper">
+                <input type="radio" name="user" value="user">
+                I am a User and want to post a requirement.<br><a href="#" class="text-link in-line">(learn more)</a>
+              </label>
+            </div> <!--form-group-->
+
+            <div class="form-group">
+              <label class="act-wrapper">
+                <input type="radio" name="user" value="tradesman">
+                I am a Trademan and want to post about my business.<br><a href="#" class="text-link in-line">(learn more)</a>
+              </label>
+            </div> <!--form-group-->
+
+            <button class="btn btn-primary btn-main sml" name="submit" type="submit">Create Account</button>
+          </form>
+  			</div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+ 

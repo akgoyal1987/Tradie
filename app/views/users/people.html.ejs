@@ -1,0 +1,131 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+            <li>People</li>
+  	    	</ul>
+        </div> <!--col-->
+
+        <!--### people - left section ###-->
+        <div class="col-xs-8">
+  	    	<h1 class="section-title no-margin-top">People</h1>
+
+          <ul class="data-filter"><li><a id="hlAll" href="/people" class="active">All</a></li><li><a id="hlTrademan" href="/people?type=tradesman">Trademan</a></li><li><a id="hlUser" href="/people?type=user">User</a></li></ul>
+  
+          <div class="row">
+            <% var temp=0;%>
+            <% users.forEach(function(u,index){ %>
+              <%if (u.id !=user.id){%>
+                <div class="col-xs-6"> <!--col-left-->
+                  <div class="people-block">
+                    <div class="clearfix user-block">
+                        <div class="user-pic on-white">
+                          <div class="pic-box-lg">
+                            <img src="<%= u.photourl %>" alt="">
+                          </div> <!--pic-box-->
+                          <% if(u.usertype == "tradesman"){ %>
+                          <span class="badge-ic trademan"></span>
+                          <% } %>
+                        </div> <!--user-pic-->
+                        <div class="user-detail">
+                          <p><%= u.name %></p>
+                          <ul class="btn-group in-row">
+                            <% temp = 0;%>
+                            <% relationships.forEach(function(r,r_index){ %>
+                              <% if(r.end==u.id){temp=1;}%>                              
+                            <%})%>
+                            <% if(temp==1){%>
+                              <li>
+                                <a href='/unfollow/<%=u.id%>' class="btn btn-primary btn-main sml">Unfollow</a>
+                              </li>
+                            <%}else{%>
+                              <li>
+                                <a href='/follow/<%=u.id%>' class="btn btn-primary btn-main sml">Follow</a>
+                              </li>
+                            <%}%>
+                          </ul>
+                        </div> <!--user-detail-->
+                    </div> <!--user-block-->
+                    <ul class="user-navigation">
+                      <li class="border-right"><a href="#"><span class="count"><%= u.followers %></span>Followers</a></li><li class="border-left border-right"><a href="#"><span class="count"><%= u.followings %></span>Followings</a></li><li class="border-left"><a href="#"><span class="count">0</span>Recommendations</a></li>
+                    </ul>
+                  </div> <!--people-block-->            
+                </div> <!--col-->
+              <%}%>
+            <% }) %>  
+          </div> <!--row-->
+
+          <div class="row">
+              <div class="col-xs-12">
+                <!--              
+                <ul class="pagination">
+                  <li><a href="#" class="active">First</a></li>
+                  <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                  <li><a href="#">Last</a></li>
+                </ul>
+                -->
+              </div> <!--col-->
+          </div> <!--row-->
+  			</div> <!--col-->
+
+        <!--### sidebar - right section ###-->
+        <div class="col-xs-4">
+          <form class="clearfix people-search" method="GET" action="/people">
+            <input type="text" name="search" placeholder="serach people" value="<%= search %>">
+            <button class="btn btn-primary btn-main sml" type="submit"><i class="fa fa-search"></i></button>
+          </form>
+
+          <!--### most followers ###-->
+          <div class="clearfix top-users"> 
+            <div class="data-head">
+              Most Followers (Top 5)
+            </div> <!--data-head-->
+            <% if(mostfollowers.length > 0){
+              for(var j = 0; j < mostfollowers.length; j++){
+            %>
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="<%= mostfollowers[j].photourl %>" alt="">
+                  </div> <!--pic-box-->
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p><%= mostfollowers[j].name %></p>
+                  <ul class="btn-group in-row">
+                    <li class="toggle"><a href="#" class="btn btn-primary btn-main xsml">Follow</a></li>
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Unfollow</a></li>
+                    <li class="no-btn"><a href="#"><span class="count"><%= mostfollowers[j].followercount %></span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+            <% }}else{%> 
+            <p class="toggle"></p>
+             <% }%>                  
+          </div> <!--top-users-->
+
+          <!--### most recommended ###-->
+          <div class="clearfix top-users"> 
+            <div class="data-head">
+              Most Recommendations (Top 5)
+            </div> <!--data-head-->
+
+          </div> <!--top-users-->
+        </div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+  </body>
+</html>

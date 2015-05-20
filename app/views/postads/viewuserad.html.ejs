@@ -1,0 +1,330 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+            <li><a href="createuserad">Create AD</a></li>
+            <li>Preview AD</li>
+  	    	</ul>
+        </div> <!--col-->
+
+        <!--### people - left section ###-->
+        <div class="col-xs-8 content-form">
+  	    	<h1 class="section-title no-margin-top">AD Preview</h1>
+
+        	<h2 class="ad-title"><%=ad.adtitle%></h2>
+
+        	<div class="ad-location"><i class="fa fa-map-marker"></i>&nbsp;<%=ad.address%></div>
+
+          <div class="block-div">
+            <p class="caption">Category:</p>
+            <p class="caption-data"><%=ad.category%></p>
+          </div> <!--block-div-->
+
+        	<div class="row block-div">
+        		<div class="col-xs-6">
+              <p class="caption">Start Date:</p>
+              <p class="caption-data"><%=ad.startdate%></p>
+        		</div> <!--col-->
+
+        		<div class="col-xs-6">
+        			<p class="caption">End Date:</p>
+              <p class="caption-data"><%=ad.enddate%></p>
+        		</div> <!--col-->
+        	</div> <!--row-->
+
+          <div class="row semi-block-div">
+            <div class="col-xs-6">
+              <p class="caption">Advertised by:</p>
+              <p class="caption-data"><%=ad.contactname%></p>
+            </div> <!--col-->
+
+            <div class="col-xs-6">
+              <p class="caption">Job Type:</p>
+              <p class="caption-data"><%=ad.jobtype%></p>
+            </div> <!--col-->
+          </div> <!--row-->
+
+        	<div class="block-div">
+        		<p class="caption">Description:</p>
+        		<p class="caption-data"><%=ad.description%></p>
+
+            <p class="caption-data">Please email resume and expression of interest to <a href="#" class="text-link"><%=ad.email%></a></p>
+        	</div> <!--block-div-->
+
+          <div class="block-div">
+            <p class="caption">Images:</p>
+            <div class="clearfix ad-images pic-container">
+
+              <% if(images){
+                  images.forEach(function(image, index) { 
+              %>            
+                  <div class="ad-media top-row"> <!--pic_<%=index%>-->
+                    <div class="media-box media-lrg">
+                      <img src="<%="uploads/photos/"+aduser.id+"/"+ad.id+"/"+image.photo%>" alt="">
+                    </div> <!--media-box-->
+                  </div> <!--ad-media-->
+              <%
+                  });
+              }%>
+
+              </div> <!--pic-container-->
+            </div> <!--block-div-->
+
+          <div class="ad-reply-block">
+            <div class="hr-block">
+                <hr>
+                <span class="block-title">Replies</span>
+            </div> <!--hr-block-->
+          <% replies.forEach(function(reply, index){%>
+            <div class="ad-reply">
+              <div class="clearfix user-block">
+                  <div class="user-pic on-white">
+                    <div class="pic-box-sml">
+                      <img alt="" src="<%=reply.user.photourl%>">
+                    </div> <!--pic-box-->
+                  </div> <!--user-pic-->
+                  <div class="user-detail">
+                    <p><%=reply.user.name%></p>
+                    <p class="reply-date"><%=reply.reply.properties.date%></p>
+                  </div> <!--user-detail-->
+              </div> <!--user-block-->
+
+              <p class="reply-message"><%=reply.reply.properties.description%></p>
+            </div> <!--ad-reply-->
+          <%})%>
+        </div>
+  		</div> <!--col-->
+
+        <!--### sidebar - right section ###-->
+        <div class="col-xs-4">
+            <div class="clearfix side-block">
+            	<h3 class="side-block-title">AD Posted by:</h3>
+
+            	<div class="clearfix user-block">
+		            <div class="user-pic on-white">
+		            	<div class="pic-box-lg">
+                    <% if(aduser.photourl){ %>
+                      <img src="<%=aduser.photourl%>" alt="">
+                    <%}else{%>
+		            		  <img src="images/no-pic.png" alt="">
+                    <%}%>
+		            	</div> <!--pic-box-->
+		            </div> <!--user-pic-->
+		            <div class="user-detail">
+		            	<p><%=aduser.name%></p>
+		            	<p class="caption">Member Since <%=aduser.createddate%></p>
+		            </div> <!--user-detail-->
+		        </div> <!--user-block-->
+          <% if(visitor.id != aduser.id) {%>
+            <div class="center action-btns">
+              <ul class="btn-group">
+                <li><a class="btn btn-primary btn-main sml" href="#">Follow</a></li>
+                <li class="toggle"><a class="btn btn-primary btn-main sml" href="#">Unfollow</a></li>
+                <li><a class="btn btn-primary btn-main sml" href="#">View Profile</a></li>
+                <li><a class="btn btn-primary btn-main sml" data-target=".suggest-tradie" data-toggle="modal" href="#">Suggest a Tradie</a></li>
+              </ul>
+            </div>
+          <%}%>
+            </div>
+
+            <div class="ad-location-map" id="map-canvas" style="min-height: 250px;">
+            </div> <!--ad-location-map-->
+            <div class="clearfix side-block">
+              <h3 class="side-block-title no-margin-bottom">Other Similar ADs</h3>
+
+              <div class="random-data">
+                <p><a class="text-link" href="#">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</a></p>
+                <ul class="key-points">
+                  <li>5 Replies</li>
+                  <li><i class="fa fa-map-marker"></i> Northern Beaches</li>
+                  <li>10 Jan, 2014</li>
+                </ul>
+              </div> <!--random-data-->
+            </div>
+
+            <div class="clearfix side-block">
+              <h3 class="side-block-title no-margin-bottom">Matching Trademan to This AD</h3>
+
+              <div class="random-data">
+                <div class="clearfix user-block">
+                    <div class="user-pic on-gray">
+                      <div class="pic-box-sml">
+                        <img alt="" src="images/no-pic.png">
+                      </div> <!--pic-box-->
+                      <span class="badge-ic trademan"></span>
+                    </div> <!--user-pic-->
+                    <div class="user-detail">
+                      <p>thecagrat24  (@scottbenj)</p>
+                      <ul class="btn-group in-row">
+                        <li><a class="btn btn-primary btn-main xsml" href="profile.html">View Profile</a></li>
+                      </ul>
+                    </div> <!--user-detail-->
+                </div> <!--user-block-->
+
+                <ul class="key-points trademan-data">
+                  <li><span class="count">70</span>Followers</li>
+                  <li><span class="count">25</span>Current Ads</li>
+                  <li>
+                    <div class="clearfix rating">
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                      <span class="fa fa-star filled"></span>
+                    </div>
+                    Overall Rating
+                  </li>
+                </ul>
+              </div> <!--random-data-->
+            </div>
+
+            <br />
+            <% if(visitor && visitor.id != aduser.id){
+              if(ad.isWatched == 1)
+              {
+            %>
+              <a href="#" class="btn btn-primary btn-main sml"><i class="fa fa-star-o"></i> UnWatch</a><br/><br/>
+             
+            <%}else{%>
+             <a href="/addtowatchlist?id=<%= ad.did %>" class="btn btn-primary btn-main sml"><i class="fa fa-star-o"></i> Watchlist</a><br/><br/>
+            <%}}%>  
+
+        </div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(22.7253, 75.8655);
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 12
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);                      
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>),
+          title: '<%=ad.address%>'
+        });                        
+        marker.setMap(map);
+        map.setCenter(new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>));    
+      }      
+      google.maps.event.addDomListener(window, 'load', initialize);        
+      </script>
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+    <!-- !!! suggest tradie popup !!!-->
+    <div class="modal fade popup-block user-list suggest-tradie" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <span class="btn-close-popup" data-dismiss="modal" data-target=".suggest-tradie"><i class="fa fa-times-circle"></i></span>
+          <h1>Suggest a Tradie</h1>
+          <form class="clearfix people-search">
+            <input type="text" name="people-search" placeholder="serach trademan">
+            <button class="btn btn-primary btn-main sml" type="submit" name="submit"><i class="fa fa-search"></i></button>
+          </form>
+          
+          <div class="clearfix">
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="images/no-pic.png" alt="">
+                  </div> <!--pic-box-->
+                  <span class="badge-ic trademan"></span>
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p>thecagrat24  (@scottbenj)</p>
+                  <ul class="btn-group in-row">
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Suggest</a></li>
+                    <li class="no-btn"><a href="#"><span class="count">25</span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="images/no-pic.png" alt="">
+                  </div> <!--pic-box-->
+                  <span class="badge-ic trademan"></span>
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p>thecagrat24  (@scottbenj)</p>
+                  <ul class="btn-group in-row">
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Suggest</a></li>
+                    <li class="no-btn"><a href="#"><span class="count">25</span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="images/no-pic.png" alt="">
+                  </div> <!--pic-box-->
+                  <span class="badge-ic trademan"></span>
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p>thecagrat24  (@scottbenj)</p>
+                  <ul class="btn-group in-row">
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Suggest</a></li>
+                    <li class="no-btn"><a href="#"><span class="count">25</span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="images/no-pic.png" alt="">
+                  </div> <!--pic-box-->
+                  <span class="badge-ic trademan"></span>
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p>thecagrat24  (@scottbenj)</p>
+                  <ul class="btn-group in-row">
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Suggest</a></li>
+                    <li class="no-btn"><a href="#"><span class="count">25</span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+
+            <div class="clearfix user-block">
+                <div class="user-pic on-gray">
+                  <div class="pic-box-sml">
+                    <img src="images/no-pic.png" alt="">
+                  </div> <!--pic-box-->
+                  <span class="badge-ic trademan"></span>
+                </div> <!--user-pic-->
+                <div class="user-detail">
+                  <p>thecagrat24  (@scottbenj)</p>
+                  <ul class="btn-group in-row">
+                    <li><a href="#" class="btn btn-primary btn-main xsml">Suggest</a></li>
+                    <li class="no-btn"><a href="#"><span class="count">25</span> Followers</a></li>
+                  </ul>
+                </div> <!--user-detail-->
+            </div> <!--user-block-->
+          </div>
+
+          <ul class="pagination">
+            <li><a href="#" class="active">First</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+            <li><a href="#">Last</a></li>
+          </ul>
+
+        </div> <!--modal-content-->
+      </div> <!--modal-sm-->
+    </div> <!--modal-->
+
+  </body>
+</html>

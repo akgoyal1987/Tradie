@@ -1,0 +1,71 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">	    	
+	    	<h1 class="section-title">User Ads</h1>
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+	    			<p class="toggle">You do not have any current ads at this moment.</p>
+				<%
+					ads.forEach(function(ad, index){
+					var photopath = "/images/no-image.jpg"; 
+					if(ad.ad.photo != null)
+					{
+							photopath = "/uploads/photos/" + ad.id + "/" + ad.ad.adid + "/" + ad.ad.photo;
+					}
+				%>
+				<div class="row ad-block">
+    				<div class="col-xs-2">
+					<div class="ad-media">
+						<div class="media-box media-lrg">
+							<img src="<%= photopath %>" alt="">
+						</div> <!--media-box-->
+					</div> <!--ad-media-->
+				</div> <!--col-->
+				<div class="col-xs-7">
+					<p class="caption">Title:</p>
+					<p class="caption-data"><%= ad.ad.adtitle %></p>
+					<p class="caption">Description:</p>
+					<p class="caption-data"><%= ad.ad.description %></p>
+				</div> <!--col-->
+				<div class="col-xs-3">
+					<div class="recommend-block center">						
+						<ul class="btn-group">							
+	    					<li>
+	    					<% if(ad.ad.isfeatured == "0" || ad.ad.isfeatured == null){%>
+							<a id="hl_featured_<%=ad.ad.adid%>" onclick="markAdFeatured(<%= ad.ad.adid %>)" href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Mark Featured</a>
+							<a id="hl_unfeatured_<%=ad.ad.adid%>" onclick="markAdUnFeatured(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-edit"></i> Mark Unfeatured</a>
+							<% } else if(ad.ad.isfeatured == "1"){%>  
+							<a id="hl_featured_<%=ad.ad.adid%>" onclick="markAdFeatured(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-edit"></i> Mark Featured</a>
+							<a id="hl_unfeatured_<%=ad.ad.adid%>" onclick="markAdUnFeatured(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Mark Unfeatured</a>
+							<% }%> 
+							</li> 						
+							<li>
+	    					<% if(ad.ad.isRecommended == "0"){%>
+							<a id="hl_recommended_<%=ad.ad.adid%>" onclick="markAdRecommended(<%= ad.ad.adid %>)" href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> Recommend </a>
+							<a id="hl_unrecommended_<%=ad.ad.adid%>" onclick="markAdUnRecommended(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> UnRecommend</a>
+							<% } else if(ad.ad.isRecommended == "1"){%>  
+							<a id="hl_recommended_<%=ad.ad.adid%>" onclick="markAdRecommended(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml toggle"><i class="fa fa-star"></i> Recommend </a>
+							<a id="hl_recommended_<%=ad.ad.adid%>" onclick="markAdUnRecommended(<%= ad.ad.adid %>)"  href="javascript:void(0);" class="btn btn-primary btn-main sml"><i class="fa fa-star"></i> UnRecommend</a>
+							<% }%> 
+							</li> 						
+							<li>  
+							<% if(ad.ad.status == 1){%> 
+							 <form class="content-form" method = "post" action="/blockad/<%=ad.ad.adid%>">
+              <label class="caption">
+					    <li><button type="submit" class="btn btn-primary btn-main sml">Block</button></li>
+             <%} if(ad.ad.status == 2){%>
+               <form class="content-form" method = "post" action="/unblockad/<%=ad.ad.adid%>">
+              <label class="caption">
+                <li><button type="submit" class="btn btn-primary btn-main sml">Unblock</button></li>
+                <%}%>
+            </form>   						
+    					</ul>
+					</div>
+				</div> <!--col-->
+			</div> <!--row-->
+			<%});%>	    			
+    		</div> <!--tab-pane-->	    		
+    </div> <!--container-->

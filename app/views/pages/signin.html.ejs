@@ -1,0 +1,35 @@
+<% include  ../layout.ejs %>
+
+    <!-- Search Panel -->
+    <% include ../search_panel.ejs %>
+    
+    <!-- !!! Slider !!!-->
+    <div class="container">
+    <div class="row">
+      <div class="login-popup">
+      <div class="modal-dialog modal-sm" style="width:343px">
+        <form action="/weblogin" method="post">
+          <div class="modal-content clearfix">
+            <h1>Sign in</h1>
+            <div class="form-group">
+              <label class="caption">Email Address (<span class="ic-mandatory">*</span>):</label>
+              <input type="email" name="username" id="username" required>
+            </div> <!--form-group--> 
+            <div class="form-group">
+              <label class="caption">Password (<span class="ic-mandatory">*</span>):</label>
+              <input type="password" name="password" id="password" required>
+            </div> <!--form-group--> 
+            <ul class="btn-group in-row" style="float:right">              
+              <li><button type="submit" id="submit" class="btn btn-primary btn-main sml">Login</button></li>
+            </ul>
+            <% if( message!=""){%>
+              <p class="error"><%=message%></p>
+            <%}%>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div> <!--row-->
+    </div> <!--container-->
+    
+<% include ../footer.ejs %>

@@ -1,0 +1,178 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>        
+
+    <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<ul class="breadcrumb">
+	    		<li>You are here:</li>
+          <li>Create AD</li>
+	    	</ul>
+
+	    	<h1 class="section-title">Create AD</h1>
+
+	    	<form class="content-form" action="/createuserads" method="post">
+          <div class="form-group">
+            <label class="caption">Select a Category:</label>
+            <select name="category">
+              <option>--- select ---</option>
+              <option>Painter</option>
+              <option>Carpenter</option>
+              <option>Builder</option>
+            </select>
+          </div> <!--form-group-->
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">AD Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">AD Title (<span class="ic-mandatory">*</span>):</label>
+            <input class="full" type="text" name="ad-title">
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Give your AD a descriptive title to improve its visibility.</p>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Description (<span class="ic-mandatory">*</span>):</label>
+            <textarea class="full"></textarea>
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Add Picture:</label>
+            <input type="file" name="upload-pic">
+
+            <div class="clearfix pic-container">
+              <div class="ad-media top-row"> <!--pic01-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media top-row"> <!--pic02-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media top-row"> <!--pic03-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media top-row"> <!--pic04-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media top-row"> <!--pic05-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media top-row"> <!--pic06-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media"> <!--pic07-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media"> <!--pic08-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media"> <!--pic09-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+              <div class="ad-media"> <!--pic10-->
+                <div class="media-box media-lrg">
+                  <img src="images/no-image.jpg" alt="">
+                </div> <!--media-box-->
+              </div> <!--ad-media-->
+            </div> <!--pic-container-->
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>ADs with pictures are more successful. You may load upto 10 pictures, each upto a size of 4MB.</p>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Advertised by:</label>
+            <select name="advertised">
+              <option>--- select ---</option>
+              <option>Private</option>
+            </select>
+          </div> <!--form-group-->
+
+          <div class="form-group">
+            <label class="caption">Select a job Type:</label>
+            <select name="job-type">
+              <option>--- select ---</option>
+              <option>Casual</option>
+            </select>
+          </div> <!--form-group-->
+
+          <div class="hr-block">
+            <hr>
+            <span class="block-title">Contact Details</span>
+          </div> <!--hr-block-->
+
+          <div class="form-group">
+            <label class="caption">Email Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="email" name="email">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Contact Name (<span class="ic-mandatory">*</span>):</label>
+            <input type="text" name="contact-name">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Phone Number (<span class="ic-mandatory">*</span>):</label>
+            <input type="number" name="phone">
+          </div> <!--form-group-->
+          <div class="form-group">
+            <label class="caption">Address (<span class="ic-mandatory">*</span>):</label>
+            <input type="email" name="address">
+            <div class="btn-location">
+              <a href="#"><i class="fa fa-crosshairs"></i></a>
+              <span class="caption">(use current location)</span>
+            </div> <!--btn-location-->
+            <p class="form-note"><i class="fa fa-hand-o-right"></i>Help users to locate your AD by entering your full address or suburb.</p>
+          </div> <!--form-group-->
+
+          <div class="locate-map">
+            map to be placed inside this div
+          </div> <!--map-->
+
+          <ul class="btn-group in-row">
+            <li><a href="/" class="btn btn-primary btn-main sml">Cancel</a></li>
+            <li><a href="/previewuserad" class="btn btn-primary btn-main sml">Preview</a></li>
+            <li><button type="submit" class="btn btn-primary btn-main sml">Publish</button></li>
+          </ul>
+        </form>
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+
+
+    <!-- !!! login-popup !!!-->
+    <div class="modal fade login-popup" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h1>Sign in using your account with:</h1>
+          <ul>
+            <li><a href="#" class="btn-twitter"></a></li>
+            <li><a href="#" class="btn-facebook"></a></li>
+            <br>
+            <li><a href="#" class="btn-linkedin"></a></li>
+            <li><a href="#" class="btn-google"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

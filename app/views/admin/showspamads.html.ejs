@@ -1,0 +1,45 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">	    	
+	    	<h1 class="section-title">Spam Ads</h1>
+	    	<div class="tab-content">
+	    		<!-- ### current ads data ###-->
+	    		<div class="tab-pane active" id="current-ads"> <!--fisrt ad data-->
+    			<p class="toggle">You do not have any current ads at this moment.</p>
+				<%
+					ads.forEach(function(ad, index){
+					var photopath = "/images/no-image.jpg"; 
+					if(ad.photo != null)
+					{
+						photopath = "/uploads/photos/" + ad.userid + "/" + ad.adid + "/" + ad.photo;
+					}
+				%>
+				<div class="row ad-block">
+    				<div class="col-xs-2">
+					<div class="ad-media">
+						<div class="media-box media-lrg">
+							<img src="<%= photopath %>" alt="">
+						</div> <!--media-box-->
+					</div> <!--ad-media-->
+				</div> <!--col-->
+				<div class="col-xs-7">
+					<p class="caption">Title:</p>
+					<p class="caption-data"><%= ad.title %></p>
+					<p class="caption">Description:</p>
+					<p class="caption-data"><%= ad.description %></p>
+				</div> <!--col-->
+				<div class="col-xs-3">
+					<div class="recommend-block center">						
+						<ul class="btn-group">							
+	    					<li>
+							<a href="deletead/?id=<%=ad.adid%>" onclick="return confirm('Are you sure? You want to delete this Ad.');" class="btn btn-primary btn-main sml"><i class="fa fa-edit"></i> Delete</a>
+							</li> 						
+    					</ul>
+					</div>
+				</div> <!--col-->
+			</div> <!--row-->
+			<%});%>
+		</div> <!--tab-pane-->	    		
+    </div> <!--container-->

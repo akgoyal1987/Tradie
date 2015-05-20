@@ -1,0 +1,45 @@
+<!-- !!! search-panel !!!-->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <form class="clearfix primary-search" method="post" action="/adminsearch">
+              <div class="form-group">
+                <label>Enter Keyword:</label>
+                <input type="text" name="keyword" placeholder="ex: floorboards, spa pool...">
+              </div> <!--form-group-->
+              <div class="form-group">
+                <label>Select Category:</label>
+                <select name="category">
+                  <option>All</option>
+                  <option>Carpenter</option>
+                  <option>Painter</option>
+                  <option>Builder</option>
+                </select> 
+              </div> <!--form-group-->
+              <div class="form-group">
+                <label>Select Location:</label>
+                <select name="location">
+                  <option>All</option>
+                  <option>Location 1</option>
+                  <option>Location 2</option>
+                  <option>Location 3</option>
+                </select> 
+              </div> <!--form-group-->
+              <div class="form-group distance">
+                <label>Select Distance:</label>
+                <select name="distance">
+                  <option>+ 0km</option>
+                  <option>+ 1km</option>
+                  <option>+ 1.5km</option>
+                  <option>+ 2km</option>
+                </select> 
+              </div> <!--form-group-->
+              <div class="form-group">
+                <button class="btn btn-primary btn-main" name="submit" type="submit">Search<i class="fa fa-angle-double-right"></i></button>
+              </div> <!--form-group-->
+            </form>
+          </div>
+        </div> <!--row-->
+      </div> <!--container-->
+    </div> <!--sub-header-->

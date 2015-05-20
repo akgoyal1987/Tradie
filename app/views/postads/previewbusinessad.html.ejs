@@ -1,0 +1,134 @@
+<% include  ../layout.ejs %>
+<% include ../search_panel.ejs %>
+
+    <!-- !!! Slider !!!-->
+    <div class="container content">
+  	  <div class="row">
+  	    <div class="col-xs-12">
+  	    	<ul class="breadcrumb">
+  	    		<li>You are here:</li>
+            <li><a href="findservice">Create AD</a></li>
+            <li>Preview AD</li>
+  	    	</ul>
+        </div> <!--col-->
+
+        <!--### people - left section ###-->
+        <div class="col-xs-8 content-form">
+  	    	<h1 class="section-title no-margin-top">AD Preview</h1>
+
+        	<h2 class="ad-title"><%=ad.adtitle%></h2>
+        	<p><%=ad.slogan%></p>
+
+        	<div class="ad-location"><i class="fa fa-map-marker"></i>&nbsp;<%=ad.address%></div>
+
+          <div class="block-div">
+            <p class="caption">Category:</p>
+            <p class="caption-data"><%=ad.category%></p>
+          </div> <!--block-div-->
+
+        	<div class="row block-div">
+        		<div class="col-xs-4">
+        			<div class="ad-media">
+						<div class="media-box media-lrg">
+
+            <% if(images && images[0]){ %>                                          
+              <img src="<%="uploads/photos/"+aduser.id+"/"+ad.id+"/"+images[0].photo%>" alt="">
+            <%} else {%>
+							<img src="images/media01.jpg" alt="">
+            <%}%>
+						</div> <!--media-box-->
+					</div> <!--ad-media-->
+        		</div> <!--col-->
+
+        		<div class="col-xs-8">
+        			<p class="caption">Hours of Operation:</p>
+        			<ul class="operation-hours">
+        				<li><Span>Monday :</Span> <%= (ad.mondayam != "" ? ad.mondayam + " am" : "-") %>  to <%= (ad.mondaypm != "" ? ad.mondaypm + " pm" : "-")%> </li>
+                <li><Span>Tuesday :</Span> <%= (ad.tuesdayam != "" ? ad.tuesdayam + " am" : "-") %>  to <%= (ad.tuesdaypm != "" ? ad.tuesdaypm + " pm" : "-")%> </li>
+                <li><Span>Wednesday :</Span> <%= (ad.wednesdayam != "" ? ad.wednesdayam + " am" : "-") %>  to <%= (ad.wednesdaypm != "" ? ad.wednesdaypm + " pm" : "-")%> </li>
+                <li><Span>Thursday :</Span> <%= (ad.thursdayam != "" ? ad.thursdayam + " am" : "-") %>  to <%= (ad.thursdaypm != "" ? ad.thursdaypm + " pm" : "-")%> </li>
+                <li><Span>Friday :</Span> <%= (ad.fridayam != "" ? ad.fridayam + " am" : "-") %>  to <%= (ad.fridaypm != "" ? ad.fridaypm + " pm" : "-")%> </li>
+                <li><Span>Saturday :</Span> <%= (ad.saturdayam != "" ? ad.saturdayam + " am" : "-") %>  to <%= (ad.saturdaypm != "" ? ad.saturdaypm + " pm" : "-")%> </li>
+                <li><Span>Sunday :</Span> <%= (ad.sundayam != "" ? ad.sundayam + " am" : "-") %>  to <%= (ad.sundaypm != "" ? ad.sundaypm + " pm" : "-")%> </li>
+        			</ul>
+        		</div> <!--col-->
+        	</div> <!--row-->
+
+        	<div class="block-div">
+        		<p class="caption">Accrediation:</p>
+        		<p class="caption-data"><%=ad.accrediation%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">ABN Number:</p>
+        		<p class="caption-data"><%=ad.abn%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">Areas of Experties:</p>
+        		<p class="caption-data"><%=ad.areaofexpertise%></p>
+        	</div> <!--block-div-->
+
+        	<div class="block-div">
+        		<p class="caption">Description:</p>
+        		<p class="caption-data"><%=ad.description%></p>
+        	</div> <!--block-div-->
+
+        	<ul class="btn-group in-row">
+	            <li><a href="editbusinessad?id=<%=ad.id%>" class="btn btn-primary btn-main sml">Edit</a></li>
+	            <li><a href="publishbusinessad?id=<%=ad.id%>" class="btn btn-primary btn-main sml">Publish</a></li>
+            </ul>
+  		</div> <!--col-->
+
+        <!--### sidebar - right section ###-->
+        <div class="col-xs-4">
+            <div class="clearfix side-block">
+            	<h3 class="side-block-title">AD Posted by:</h3>
+
+            	<div class="clearfix user-block">
+		            <div class="user-pic on-white">
+		            	<div class="pic-box-lg">
+                    <% if(aduser.photourl){ %>
+                      <img src="<%=aduser.photourl%>" alt="">
+                    <%}else{%>
+		            		<img src="images/no-pic.png" alt="">
+                    <%}%>
+		            	</div> <!--pic-box-->
+		            </div> <!--user-pic-->
+		            <div class="user-detail">
+                        <p><%=aduser.name%></p>
+                        <p class="caption">Member Since <%=aduser.createddate%></p>
+		            </div> <!--user-detail-->
+		        </div> <!--user-block-->
+            </div>
+
+            <div class="ad-location-map" id="map-canvas" style="min-height: 250px;">
+            </div> <!--ad-location-map-->
+        </div> <!--col-->
+  	  </div> <!--row-->
+    </div> <!--container-->
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(22.7253, 75.8655);
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 12
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);                      
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>),
+          title: '<%=ad.address%>'
+        });                        
+        marker.setMap(map);
+        map.setCenter(new google.maps.LatLng(<%=ad.latitude%>, <%=ad.longitude%>));    
+      }      
+      google.maps.event.addDomListener(window, 'load', initialize);        
+      </script>
+
+    <!-- !!! footer !!!-->
+    <% include  ../footer.ejs %> 
+    <!--footer-wrapper-->
+  </body>
+</html>

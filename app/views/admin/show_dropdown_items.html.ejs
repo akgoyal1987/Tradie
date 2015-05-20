@@ -1,0 +1,29 @@
+<% include  ./layout.ejs %>
+  <!-- !!! Slider !!!-->
+    <div class="container">
+	  <div class="row">
+	    <div class="col-xs-12">	    	
+	    	<h1 class="section-title">Manage <%=type%></h1>
+	    	<div class="tab-content">
+		    	<div class="form-group">
+		    		<form action="<%=formAction%>" method="post">
+				        <label class="caption">Add New <%=type%> : </label>
+				        <input type="text" name="name" id="newcategory">
+				        <button type="submit" class="btn btn-primary btn-main sml">Add</button>
+				        <% if(errmsg != "") {%>
+				        <%= errmsg %>
+				        <% }%>
+			        </form>
+		        </div> <!--form-group--> 
+	    		<table class="table table-striped">	    			
+				    <tr><th>S.No.</th><th><%=type%></th><th>Edit</th><th>Delete</th></tr>
+				<% items.forEach(function(cat, index){ %>
+					<tr><td><%=index+1%></td><td><%=cat.name%></td><td><a href="edititem?id=<%=cat.id%>&type=<%=type%>">Edit</a></td><td><a href="deleteitem?id=<%=cat.id%>">Delete</a></td></tr>
+				<% });%>
+				</table>
+	    	</div> <!--tab-content-->
+	    </div> <!--col-->
+	  </div> <!--row-->
+    </div> <!--container-->
+
+
